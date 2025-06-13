@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ArrowDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
+import NotificationCenter from "@/components/NotificationCenter";
 import HostelLife from "@/components/sections/HostelLife";
 import MessAndFood from "@/components/sections/MessAndFood";
 import AcademicOrientation from "@/components/sections/AcademicOrientation";
@@ -21,30 +22,37 @@ const Index = () => {
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6 animate-fade-in">
-              Inside BITS Pilani
+              Inside BITS
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 mb-8 animate-fade-in">
-              Welcome to your new home, freshers and families! 🎉
+              🎉 Welcome to BITS Pilani!
             </p>
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl mb-8">
               <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                Step into a world of endless possibilities at BITS Pilani - where academic excellence meets 
-                vibrant campus life, where freedom to explore meets a supportive community, and where your 
-                journey of growth and discovery begins!
+                Congratulations on becoming a part of one of India's most vibrant and prestigious institutions! 🎓
               </p>
               <p className="text-base text-gray-500 mb-6">
-                From choosing your courses to finding your tribe in clubs, from savoring diverse cuisines 
-                to building lifelong friendships - we've got you covered with everything you need to know 
-                about life at BITS.
+                This page is designed to <strong>guide you through your first steps at BITS Pilani</strong> — from settling into your hostel to discovering the wide range of clubs, departments, and resources that make this campus truly special.
+              </p>
+              <p className="text-base text-gray-500 mb-6">
+                Whether you're a student or a parent, this platform aims to answer your questions, connect you with student mentors, and ensure your onboarding experience is <strong>smooth, stress-free, and exciting</strong>.
+              </p>
+              <p className="text-lg font-semibold text-blue-600">
+                Let this be the beginning of an incredible journey. <br />
+                <span className="text-purple-600">Welcome home, future BITSian! 💙</span>
               </p>
             </div>
+
+            {/* Notification Center */}
+            <NotificationCenter />
+
             <Button 
               asChild 
               size="lg" 
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg rounded-full shadow-lg hover-scale"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg rounded-full shadow-lg hover-scale mt-6"
             >
-              <a href="https://forms.google.com/your-mentor-form" target="_blank" rel="noopener noreferrer">
-                Connect with a Student Mentor 🤝
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScj6gDv5GWpG2-UJKa7XJo21FBMvQvGq9WttslX7JPf6YjXlA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+                🔗 Connect with a Student Mentor 🤝
               </a>
             </Button>
             <div className="mt-12 animate-bounce">

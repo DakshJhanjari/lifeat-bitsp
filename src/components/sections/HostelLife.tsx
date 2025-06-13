@@ -2,25 +2,27 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Home, Wifi, Users, Video } from "lucide-react";
+import { Home, Wifi, Users, Video, ExternalLink, Phone } from "lucide-react";
 
 const HostelLife = () => {
   const boysHostels = [
-    "Shankar Bhawan", "Gandhi Bhawan", "Budh Bhawan", "Vyas Bhawan", 
-    "Krishna Bhawan", "Ram Bhawan", "Meera Bhawan", "Malviya Bhawan"
+    "Vishwakarma Bhawan", "Krishna Bhawan", "Budh Bhawan", 
+    "Rana Pratap Bhawan", "SR Bhawan", "Gandhi Bhawan", 
+    "Ashok Bhawan", "Ram Bhawan", "Bhagirath Bhawan", 
+    "Shankar Bhawan", "Vyas Bhawan"
   ];
 
   const girlsHostels = [
-    "Saraswati Bhawan", "Laxmi Bhawan", "Ganga Bhawan", "Yamuna Bhawan"
+    "Meera Bhawan"
   ];
 
   return (
     <section id="hostel" className="py-16 px-4 bg-white">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">🏠 Hostel Life</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Your home away from home! Discover comfortable accommodations and vibrant community living.
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">🛏️ Hostel Life and Tours</h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Welcome to your home for the next few years! Hostels at BITS Pilani are more than just places to stay—they're where friendships start, midnight discussions happen, and lifelong memories are made.
           </p>
         </div>
 
@@ -29,19 +31,22 @@ const HostelLife = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Home className="h-5 w-5 text-blue-600" />
-                Room Facilities
+                Hostel Allocation
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-2 text-gray-600">
-                <li>• Single/Double occupancy rooms</li>
-                <li>• Study table and chair</li>
-                <li>• Bed with mattress</li>
-                <li>• Wardrobe and storage</li>
-                <li>• 24/7 Wi-Fi connectivity</li>
-                <li>• Water cooler on each floor</li>
-                <li>• Common room with TV</li>
+              <ul className="space-y-3 text-gray-600">
+                <li>• First-year students are assigned hostels randomly, usually grouped with fellow freshers</li>
+                <li>• Boys and girls have separate hostels</li>
+                <li>• Room sharing (double occupancy) is common in the first and second year</li>
+                <li>• Single rooms are allotted third year onwards</li>
+                <li>• Your room number and hostel details will be shared during registration</li>
               </ul>
+              <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+                <p className="text-sm text-blue-800">
+                  💡 <strong>Note:</strong> Room allocation is automatic - no need to worry about choosing!
+                </p>
+              </div>
             </CardContent>
           </Card>
 
@@ -49,32 +54,63 @@ const HostelLife = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Video className="h-5 w-5 text-purple-600" />
-                Virtual Tours
+                Campus & Hostel Tours
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <Button asChild variant="outline" className="w-full">
-                  <a href="https://youtube.com/watch?v=hostel-tour-1" target="_blank" rel="noopener noreferrer">
-                    📹 Boys Hostel Tour
+                  <a href="https://youtu.be/bkmKuEguTH8" target="_blank" rel="noopener noreferrer">
+                    📹 Campus Tour Video <ExternalLink className="h-4 w-4 ml-2" />
                   </a>
                 </Button>
                 <Button asChild variant="outline" className="w-full">
-                  <a href="https://youtube.com/watch?v=hostel-tour-2" target="_blank" rel="noopener noreferrer">
-                    📹 Girls Hostel Tour
+                  <a href="https://www.youtube.com/watch?v=OHN-gBhy2hg" target="_blank" rel="noopener noreferrer">
+                    📹 SR Bhawan Hostel Tour <ExternalLink className="h-4 w-4 ml-2" />
                   </a>
                 </Button>
-                <Button asChild variant="outline" className="w-full">
-                  <a href="https://youtube.com/watch?v=hostel-tour-3" target="_blank" rel="noopener noreferrer">
-                    📹 Common Areas Tour
-                  </a>
-                </Button>
+                <div className="mt-4 p-3 bg-purple-50 rounded-lg">
+                  <p className="text-sm text-purple-800">
+                    💡 Watch these tours to get familiar with your future home!
+                  </p>
+                </div>
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <Tabs defaultValue="boys" className="w-full">
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Home className="h-5 w-5 text-green-600" />
+              Facilities Provided
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold text-green-800 mb-3">Room Amenities:</h4>
+                <ul className="space-y-2 text-gray-600">
+                  <li>• Bed, table, chair, cupboard</li>
+                  <li>• 24x7 water and electricity (backup available)</li>
+                  <li>• Common bathrooms</li>
+                  <li>• Wi-Fi access in all hostels</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-green-800 mb-3">Common Facilities:</h4>
+                <ul className="space-y-2 text-gray-600">
+                  <li>• Water coolers and purifiers on every floor</li>
+                  <li>• Common rooms with TVs</li>
+                  <li>• Table tennis facilities</li>
+                  <li>• Indoor games and magazines</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Tabs defaultValue="boys" className="w-full mb-8">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="boys">Boys Hostels</TabsTrigger>
             <TabsTrigger value="girls">Girls Hostels</TabsTrigger>
@@ -87,7 +123,7 @@ const HostelLife = () => {
                 <CardDescription>Choose from these comfortable accommodations</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {boysHostels.map((hostel) => (
                     <div key={hostel} className="bg-blue-50 p-3 rounded-lg text-center">
                       <p className="font-medium text-blue-800">{hostel}</p>
@@ -117,22 +153,75 @@ const HostelLife = () => {
           </TabsContent>
         </Tabs>
 
-        <Card className="mt-8">
+        <div className="grid md:grid-cols-2 gap-8">
+          <Card className="hover-scale">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <ExternalLink className="h-5 w-5 text-indigo-600" />
+                Additional Resources
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <Button asChild variant="outline" className="w-full">
+                  <a href="https://swd.bits-pilani.ac.in/" target="_blank" rel="noopener noreferrer">
+                    🏢 Student Welfare Division <ExternalLink className="h-4 w-4 ml-2" />
+                  </a>
+                </Button>
+                <Button asChild variant="outline" className="w-full">
+                  <a href="https://drive.google.com/file/d/1cLDohBn6nDlqhnZRRwpm-x1m-swHYFLS/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                    📐 Hostel Layouts <ExternalLink className="h-4 w-4 ml-2" />
+                  </a>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="hover-scale">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Users className="h-5 w-5 text-red-600" />
+                Important Contacts
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="bg-red-50 p-4 rounded-lg">
+                  <h4 className="font-semibold text-red-800 mb-2">🛠️ Hostel Warden</h4>
+                  <p className="text-sm text-gray-600">For admin/maintenance issues</p>
+                </div>
+                <div className="bg-red-50 p-4 rounded-lg">
+                  <h4 className="font-semibold text-red-800 mb-2">👥 SU Representative</h4>
+                  <p className="text-sm text-gray-600">For Wi-Fi, hostel issues, or escalation</p>
+                </div>
+                <div className="bg-red-50 p-4 rounded-lg">
+                  <h4 className="font-semibold text-red-800 mb-2">🔧 Maintenance Staff</h4>
+                  <p className="text-sm text-gray-600">Available during daytime</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <Card className="mt-8 bg-gradient-to-r from-orange-50 to-yellow-50 border-orange-200">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Users className="h-5 w-5 text-green-600" />
-              Important Contacts
-            </CardTitle>
+            <CardTitle className="text-orange-800">🚫 Important Rules & Guidelines</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-green-800 mb-2">Hostel Wardens</h4>
-                <p className="text-sm text-gray-600">Contact details will be provided during orientation</p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold text-orange-800 mb-3">Freedom & Flexibility:</h4>
+                <ul className="space-y-2 text-gray-600">
+                  <li>• No hostel in-time or curfew for students</li>
+                  <li>• You won't be allowed to leave campus after 9 PM</li>
+                </ul>
               </div>
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800 mb-2">Student Union Representatives</h4>
-                <p className="text-sm text-gray-600">Your go-to people for hostel-related queries</p>
+              <div>
+                <h4 className="font-semibold text-orange-800 mb-3">Strict Prohibitions:</h4>
+                <ul className="space-y-2 text-gray-600">
+                  <li>• Smoking, alcohol, and substance use strictly prohibited</li>
+                  <li>• Maintain discipline and respect for others</li>
+                </ul>
               </div>
             </div>
           </CardContent>

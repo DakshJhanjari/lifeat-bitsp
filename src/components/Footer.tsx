@@ -1,17 +1,40 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Heart, MessageCircle, BookOpen, Instagram } from "lucide-react";
+import { Heart, MessageCircle, BookOpen, Instagram, ExternalLink } from "lucide-react";
 
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-gray-900 to-indigo-900 text-white py-16 px-4">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Your BITS Journey? 🚀</h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Connect with mentors, access resources, and join the amazing BITS community!
+          <h2 className="text-3xl font-bold mb-4">🔗 Connect to a BITSian</h2>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-6">
+            New beginnings can often be challenging and confusing. If you still have doubts regarding anything related to BITS, we've got you covered!
           </p>
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-3xl mx-auto">
+            <h3 className="text-xl font-semibold mb-4">How to connect?</h3>
+            <div className="grid md:grid-cols-3 gap-4 text-left">
+              <div className="bg-white/10 p-4 rounded-lg">
+                <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mb-2">
+                  <span className="text-white font-bold">1</span>
+                </div>
+                <p className="text-sm">Fill out the Google form (ensure you enter your email correctly)</p>
+              </div>
+              <div className="bg-white/10 p-4 rounded-lg">
+                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mb-2">
+                  <span className="text-white font-bold">2</span>
+                </div>
+                <p className="text-sm">You'll receive a mail from our side with details of the assigned mentor</p>
+              </div>
+              <div className="bg-white/10 p-4 rounded-lg">
+                <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mb-2">
+                  <span className="text-white font-bold">3</span>
+                </div>
+                <p className="text-sm">Message them directly on WhatsApp or email with your query</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -22,8 +45,8 @@ const Footer = () => {
             </CardHeader>
             <CardContent className="text-center">
               <Button asChild className="bg-blue-600 hover:bg-blue-700 w-full">
-                <a href="https://forms.google.com/mentor-connect" target="_blank" rel="noopener noreferrer">
-                  Join Mentor Program
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScj6gDv5GWpG2-UJKa7XJo21FBMvQvGq9WttslX7JPf6YjXlA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+                  Join Mentor Program <ExternalLink className="h-4 w-4 ml-2" />
                 </a>
               </Button>
             </CardContent>
@@ -37,7 +60,7 @@ const Footer = () => {
             <CardContent className="text-center">
               <Button asChild variant="outline" className="w-full text-white border-white/30">
                 <a href="https://notion.so/bits-faqs" target="_blank" rel="noopener noreferrer">
-                  Browse FAQs
+                  Browse FAQs <ExternalLink className="h-4 w-4 ml-2" />
                 </a>
               </Button>
             </CardContent>
@@ -51,7 +74,7 @@ const Footer = () => {
             <CardContent className="text-center">
               <Button asChild variant="outline" className="w-full text-white border-white/30">
                 <a href="https://notion.so/class-notes" target="_blank" rel="noopener noreferrer">
-                  Access Notes
+                  Access Notes <ExternalLink className="h-4 w-4 ml-2" />
                 </a>
               </Button>
             </CardContent>
@@ -65,13 +88,13 @@ const Footer = () => {
             <CardContent className="text-center">
               <div className="space-y-2">
                 <Button asChild variant="outline" size="sm" className="w-full text-white border-white/30">
-                  <a href="https://instagram.com/oasis_bits" target="_blank" rel="noopener noreferrer">
-                    @oasis_bits
+                  <a href="https://www.instagram.com/bitsoasis" target="_blank" rel="noopener noreferrer">
+                    @bitsoasis <ExternalLink className="h-3 w-3 ml-1" />
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="sm" className="w-full text-white border-white/30">
-                  <a href="https://instagram.com/apogee_bits" target="_blank" rel="noopener noreferrer">
-                    @apogee_bits
+                  <a href="https://www.instagram.com/bitsapogee" target="_blank" rel="noopener noreferrer">
+                    @bitsapogee <ExternalLink className="h-3 w-3 ml-1" />
                   </a>
                 </Button>
               </div>
