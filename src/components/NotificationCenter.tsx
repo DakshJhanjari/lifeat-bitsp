@@ -1,20 +1,12 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bell, X, AlertCircle, Info, CheckCircle, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import type { Database } from "@/integrations/supabase/types";
 
-interface Notification {
-  id: string;
-  type: "info" | "warning" | "success";
-  title: string;
-  message: string;
-  created_at: string;
-  expires_at?: string | null;
-  is_active: boolean;
-}
+type Notification = Database['public']['Tables']['notifications']['Row'];
 
 const NotificationCenter = () => {
   const [isOpen, setIsOpen] = useState(false);

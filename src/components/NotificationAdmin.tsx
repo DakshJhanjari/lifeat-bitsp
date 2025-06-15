@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,16 +9,9 @@ import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Trash2, Edit, Plus } from "lucide-react";
+import type { Database } from "@/integrations/supabase/types";
 
-interface Notification {
-  id: string;
-  type: "info" | "warning" | "success";
-  title: string;
-  message: string;
-  created_at: string;
-  expires_at?: string | null;
-  is_active: boolean;
-}
+type Notification = Database['public']['Tables']['notifications']['Row'];
 
 const NotificationAdmin = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
@@ -127,7 +119,7 @@ const NotificationAdmin = () => {
     setFormData({
       title: notification.title,
       message: notification.message,
-      type: notification.type,
+      type: notification.type as "info" | "warning" | "success",
       expires_at: notification.expires_at ? notification.expires_at.slice(0, 16) : "",
       is_active: notification.is_active
     });
