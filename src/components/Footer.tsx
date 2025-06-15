@@ -1,11 +1,8 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, MessageCircle, BookOpen, Instagram, ExternalLink } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="bg-gradient-to-br from-gray-900 to-indigo-900 text-white py-16 px-4">
+  return <footer className="bg-gradient-to-br from-gray-900 to-indigo-900 text-white py-16 px-4">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">🔗 Connect to a BITSian</h2>
@@ -66,19 +63,7 @@ const Footer = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 border-white/20 text-white hover-scale">
-            <CardHeader className="text-center">
-              <BookOpen className="h-8 w-8 text-purple-400 mx-auto mb-2" />
-              <CardTitle className="text-lg">Class Notes</CardTitle>
-            </CardHeader>
-            <CardContent className="text-center">
-              <Button asChild variant="outline" className="w-full text-white border-white/30">
-                <a href="https://notion.so/class-notes" target="_blank" rel="noopener noreferrer">
-                  Access Notes <ExternalLink className="h-4 w-4 ml-2" />
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
+          
 
           <Card className="bg-white/10 border-white/20 text-white hover-scale">
             <CardHeader className="text-center">
@@ -111,8 +96,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
