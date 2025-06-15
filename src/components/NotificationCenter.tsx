@@ -12,7 +12,7 @@ interface Notification {
   title: string;
   message: string;
   created_at: string;
-  expires_at?: string;
+  expires_at?: string | null;
   is_active: boolean;
 }
 

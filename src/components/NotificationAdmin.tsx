@@ -17,7 +17,7 @@ interface Notification {
   title: string;
   message: string;
   created_at: string;
-  expires_at?: string;
+  expires_at?: string | null;
   is_active: boolean;
 }
 
@@ -251,7 +251,7 @@ const NotificationAdmin = () => {
                         <span>Type: {notification.type}</span>
                         <span>Status: {notification.is_active ? 'Active' : 'Inactive'}</span>
                         {notification.expires_at && (
-                          <span>Expires: {new Date(notification.expires_at).toLocaleDateString()}</span>
+                          <span>Expires: {new Date(notification.expires_at).toLocaleString()}</span>
                         )}
                       </div>
                     </div>
