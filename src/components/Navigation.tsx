@@ -27,8 +27,16 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <div className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            BITS Pilani Guide
+          <div className="flex items-center space-x-3">
+            <img
+              src="/lovable-uploads/14d131b7-3c5f-4324-b92e-245de31eb64f.png"
+              alt="Student Union Logo"
+              className="h-9 w-9 md:h-10 md:w-10 object-contain"
+              style={{minWidth: "2.25rem"}}
+            />
+            <span className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              BITS Pilani Guide
+            </span>
           </div>
           
           {/* Desktop Navigation */}
@@ -75,3 +83,4 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
