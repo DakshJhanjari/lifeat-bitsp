@@ -24,7 +24,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
+    <nav className="fixed top-0 left-0 right-0 bg-blue-600/95 backdrop-blur-md shadow-sm z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
@@ -34,7 +34,7 @@ const Navigation = () => {
               className="h-9 w-9 md:h-10 md:w-10 object-contain"
               style={{minWidth: "2.25rem"}}
             />
-            <span className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="font-bold text-xl text-white">
               BITS Pilani Guide
             </span>
           </div>
@@ -45,7 +45,7 @@ const Navigation = () => {
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+                className="text-white hover:text-blue-200 transition-colors duration-200 font-medium"
               >
                 {item.label}
               </button>
@@ -56,7 +56,7 @@ const Navigation = () => {
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden"
+            className="md:hidden text-white hover:text-blue-200 hover:bg-blue-700/20"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -65,12 +65,12 @@ const Navigation = () => {
 
         {/* Mobile Navigation Menu */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t bg-white/95">
+          <div className="md:hidden py-4 border-t border-blue-500/30 bg-blue-600/98">
             {navItems.map((item) => (
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors duration-200"
+                className="block w-full text-left py-2 px-4 text-white hover:text-blue-200 hover:bg-blue-700/20 transition-colors duration-200"
               >
                 {item.label}
               </button>
@@ -83,4 +83,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
