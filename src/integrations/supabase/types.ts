@@ -9,6 +9,42 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      content_sections: {
+        Row: {
+          content_data: Json
+          content_type: string
+          created_at: string
+          display_order: number | null
+          id: string
+          is_active: boolean
+          section_key: string
+          section_title: string
+          updated_at: string
+        }
+        Insert: {
+          content_data: Json
+          content_type: string
+          created_at?: string
+          display_order?: number | null
+          id?: string
+          is_active?: boolean
+          section_key: string
+          section_title: string
+          updated_at?: string
+        }
+        Update: {
+          content_data?: Json
+          content_type?: string
+          created_at?: string
+          display_order?: number | null
+          id?: string
+          is_active?: boolean
+          section_key?: string
+          section_title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       notifications: {
         Row: {
           created_at: string
