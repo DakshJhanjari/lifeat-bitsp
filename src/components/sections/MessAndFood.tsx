@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Utensils, Coffee, ShoppingCart, Clock, ExternalLink, Store } from "lucide-react";
@@ -156,25 +155,21 @@ const MessAndFood = () => {
               <div className="text-center">
                 <div className="bg-gradient-to-br from-orange-100 to-red-100 p-6 rounded-xl">
                   <h4 className="font-bold text-orange-800 text-lg mb-2">ANC</h4>
-                  <p className="text-sm text-gray-600">All Night Canteen - Your 24/7 food companion</p>
                 </div>
               </div>
               <div className="text-center">
                 <div className="bg-gradient-to-br from-purple-100 to-pink-100 p-6 rounded-xl">
                   <h4 className="font-bold text-purple-800 text-lg mb-2">TOTT</h4>
-                  <p className="text-sm text-gray-600">Top of the Tower - Scenic dining experience</p>
                 </div>
               </div>
               <div className="text-center">
                 <div className="bg-gradient-to-br from-blue-100 to-cyan-100 p-6 rounded-xl">
                   <h4 className="font-bold text-blue-800 text-lg mb-2">Looters</h4>
-                  <p className="text-sm text-gray-600">Budget-friendly quick bites</p>
                 </div>
               </div>
               <div className="text-center">
                 <div className="bg-gradient-to-br from-green-100 to-emerald-100 p-6 rounded-xl">
                   <h4 className="font-bold text-green-800 text-lg mb-2">DCC</h4>
-                  <p className="text-sm text-gray-600">Diverse food options</p>
                 </div>
               </div>
             </div>
