@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Utensils, Coffee, ShoppingCart, Clock, ExternalLink, Store } from "lucide-react";
@@ -147,45 +146,47 @@ const MessAndFood = () => {
               </div>
             )}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {eateryNames?.content_data?.items?.map((name: string, index: number) => {
-                const colors = [
-                  "from-orange-100 to-red-100 text-orange-800",
-                  "from-purple-100 to-pink-100 text-purple-800", 
-                  "from-blue-100 to-cyan-100 text-blue-800",
-                  "from-green-100 to-emerald-100 text-green-800"
-                ];
-                return (
-                  <div key={index} className="text-center">
-                    <div className={`bg-gradient-to-br ${colors[index]} p-6 rounded-xl`}>
-                      <h4 className="font-bold text-lg mb-2">{name}</h4>
+              {eateryNames?.content_data && typeof eateryNames.content_data === 'object' && 'items' in eateryNames.content_data 
+                ? (eateryNames.content_data as any).items?.map((name: string, index: number) => {
+                    const colors = [
+                      "from-orange-100 to-red-100 text-orange-800",
+                      "from-purple-100 to-pink-100 text-purple-800", 
+                      "from-blue-100 to-cyan-100 text-blue-800",
+                      "from-green-100 to-emerald-100 text-green-800"
+                    ];
+                    return (
+                      <div key={index} className="text-center">
+                        <div className={`bg-gradient-to-br ${colors[index]} p-6 rounded-xl`}>
+                          <h4 className="font-bold text-lg mb-2">{name}</h4>
+                        </div>
+                      </div>
+                    );
+                  })
+                : (
+                  // Fallback if data isn't loaded yet
+                  <>
+                    <div className="text-center">
+                      <div className="bg-gradient-to-br from-orange-100 to-red-100 p-6 rounded-xl">
+                        <h4 className="font-bold text-orange-800 text-lg mb-2">ANC</h4>
+                      </div>
                     </div>
-                  </div>
-                );
-              }) || (
-                // Fallback if data isn't loaded yet
-                <>
-                  <div className="text-center">
-                    <div className="bg-gradient-to-br from-orange-100 to-red-100 p-6 rounded-xl">
-                      <h4 className="font-bold text-orange-800 text-lg mb-2">ANC</h4>
+                    <div className="text-center">
+                      <div className="bg-gradient-to-br from-purple-100 to-pink-100 p-6 rounded-xl">
+                        <h4 className="font-bold text-purple-800 text-lg mb-2">TOTT</h4>
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-center">
-                    <div className="bg-gradient-to-br from-purple-100 to-pink-100 p-6 rounded-xl">
-                      <h4 className="font-bold text-purple-800 text-lg mb-2">TOTT</h4>
+                    <div className="text-center">
+                      <div className="bg-gradient-to-br from-blue-100 to-cyan-100 p-6 rounded-xl">
+                        <h4 className="font-bold text-blue-800 text-lg mb-2">Looters</h4>
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-center">
-                    <div className="bg-gradient-to-br from-blue-100 to-cyan-100 p-6 rounded-xl">
-                      <h4 className="font-bold text-blue-800 text-lg mb-2">Looters</h4>
+                    <div className="text-center">
+                      <div className="bg-gradient-to-br from-green-100 to-emerald-100 p-6 rounded-xl">
+                        <h4 className="font-bold text-green-800 text-lg mb-2">DCC</h4>
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-center">
-                    <div className="bg-gradient-to-br from-green-100 to-emerald-100 p-6 rounded-xl">
-                      <h4 className="font-bold text-green-800 text-lg mb-2">DCC</h4>
-                    </div>
-                  </div>
-                </>
-              )}
+                  </>
+                )}
             </div>
           </CardContent>
         </Card>

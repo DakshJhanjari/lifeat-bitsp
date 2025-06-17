@@ -1,38 +1,35 @@
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useContent, useUpdateContent } from "@/hooks/useContent";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useContent, useUpdateContent } from "@/hooks/useContent";
+import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Loader2, Save, Edit, X } from "lucide-react";
-import type { Tables } from "@/integrations/supabase/types";
-
-type ContentSection = Tables<"content_sections">;
 
 const AdminContent = () => {
-  const { data: content, isLoading } = useContent();
+  const { data: contentSections, isLoading } = useContent();
   const updateContent = useUpdateContent();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editData, setEditData] = useState<any>({});
 
-  const handleEdit = (section: ContentSection) => {
+  const handleEdit = (section: any) => {
     setEditingId(section.id);
     setEditData({ ...section.content_data });
   };
 
-  const handleSave = async (section: ContentSection) => {
+  const handleSave = async (id: string) => {
     try {
       await updateContent.mutateAsync({
-        id: section.id,
-        content_data: editData
+        id,
+        content_data: editData,
       });
-      setEditingId(null);
       toast.success("Content updated successfully!");
+      setEditingId(null);
+      setEditData({});
     } catch (error) {
       toast.error("Failed to update content");
-      console.error(error);
+      console.error("Error updating content:", error);
     }
   };
 
@@ -41,149 +38,120 @@ const AdminContent = () => {
     setEditData({});
   };
 
-  const renderEditForm = (section: ContentSection) => {
-    switch (section.content_type) {
+  const renderEditForm = (section: any) => {
+    const { content_type } = section;
+
+    switch (content_type) {
       case 'text':
         return (
-          <div className="space-y-2">
-            <Label htmlFor="text">Text Content</Label>
-            <Input
-              id="text"
-              value={editData.text || ''}
-              onChange={(e) => setEditData({ ...editData, text: e.target.value })}
-            />
-          </div>
+          <Input
+            value={editData.text || ''}
+            onChange={(e) => setEditData({ ...editData, text: e.target.value })}
+            placeholder="Enter text content"
+          />
         );
 
       case 'card':
         return (
           <div className="space-y-2">
-            <div>
-              <Label htmlFor="title">Title</Label>
-              <Input
-                id="title"
-                value={editData.title || ''}
-                onChange={(e) => setEditData({ ...editData, title: e.target.value })}
-              />
-            </div>
-            <div>
-              <Label htmlFor="content">Content</Label>
-              <Input
-                id="content"
-                value={editData.content || ''}
-                onChange={(e) => setEditData({ ...editData, content: e.target.value })}
-              />
-            </div>
+            <Input
+              value={editData.title || ''}
+              onChange={(e) => setEditData({ ...editData, title: e.target.value })}
+              placeholder="Card title"
+            />
+            <Textarea
+              value={editData.content || ''}
+              onChange={(e) => setEditData({ ...editData, content: e.target.value })}
+              placeholder="Card content"
+            />
           </div>
         );
 
       case 'list':
         return (
           <div className="space-y-2">
-            <div>
-              <Label htmlFor="list-title">List Title</Label>
-              <Input
-                id="list-title"
-                value={editData.title || ''}
-                onChange={(e) => setEditData({ ...editData, title: e.target.value })}
-              />
-            </div>
-            <div>
-              <Label htmlFor="items">Items (one per line)</Label>
-              <textarea
-                id="items"
-                className="w-full p-2 border rounded-md min-h-[100px]"
-                value={editData.items?.join('\n') || ''}
-                onChange={(e) => setEditData({ 
-                  ...editData, 
-                  items: e.target.value.split('\n').filter(item => item.trim())
-                })}
-              />
-            </div>
+            <Input
+              value={editData.title || ''}
+              onChange={(e) => setEditData({ ...editData, title: e.target.value })}
+              placeholder="List title"
+            />
+            <Textarea
+              value={editData.items?.join('\n') || ''}
+              onChange={(e) => setEditData({ 
+                ...editData, 
+                items: e.target.value.split('\n').filter(item => item.trim()) 
+              })}
+              placeholder="List items (one per line)"
+              rows={5}
+            />
           </div>
         );
 
+      case 'html':
+        return (
+          <Textarea
+            value={editData.html || ''}
+            onChange={(e) => setEditData({ ...editData, html: e.target.value })}
+            placeholder="HTML content"
+            rows={5}
+          />
+        );
+
       default:
-        return <div>Unsupported content type for editing</div>;
+        return <div>Unsupported content type</div>;
     }
   };
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="h-8 w-8 animate-spin" />
-      </div>
-    );
+    return <div className="p-8">Loading content...</div>;
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container mx-auto px-4">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Content Management</h1>
-          <p className="text-gray-600">Edit the content that appears throughout the website</p>
-        </div>
-
-        <div className="grid gap-6">
-          {content?.map((section) => (
-            <Card key={section.id}>
-              <CardHeader>
-                <div className="flex justify-between items-center">
-                  <div>
-                    <CardTitle className="text-lg">{section.section_title}</CardTitle>
-                    <p className="text-sm text-gray-500 mt-1">
-                      Type: {section.content_type} | Key: {section.section_key}
-                    </p>
-                  </div>
+    <div className="container mx-auto p-8">
+      <h1 className="text-3xl font-bold mb-8">Content Management</h1>
+      
+      <div className="grid gap-6">
+        {contentSections?.map((section) => (
+          <Card key={section.id}>
+            <CardHeader>
+              <CardTitle className="flex justify-between items-center">
+                <span>{section.section_title}</span>
+                <div className="text-sm text-gray-500">
+                  {section.content_type} | {section.section_key}
+                </div>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {editingId === section.id ? (
+                <div className="space-y-4">
+                  {renderEditForm(section)}
                   <div className="flex gap-2">
-                    {editingId === section.id ? (
-                      <>
-                        <Button
-                          onClick={() => handleSave(section)}
-                          disabled={updateContent.isPending}
-                          size="sm"
-                          className="bg-green-600 hover:bg-green-700"
-                        >
-                          {updateContent.isPending ? (
-                            <Loader2 className="h-4 w-4 animate-spin" />
-                          ) : (
-                            <Save className="h-4 w-4" />
-                          )}
-                        </Button>
-                        <Button
-                          onClick={handleCancel}
-                          variant="outline"
-                          size="sm"
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
-                      </>
-                    ) : (
-                      <Button
-                        onClick={() => handleEdit(section)}
-                        variant="outline"
-                        size="sm"
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                    )}
+                    <Button 
+                      onClick={() => handleSave(section.id)}
+                      disabled={updateContent.isPending}
+                    >
+                      {updateContent.isPending ? "Saving..." : "Save"}
+                    </Button>
+                    <Button variant="outline" onClick={handleCancel}>
+                      Cancel
+                    </Button>
                   </div>
                 </div>
-              </CardHeader>
-              <CardContent>
-                {editingId === section.id ? (
-                  renderEditForm(section)
-                ) : (
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <pre className="text-sm text-gray-700 whitespace-pre-wrap">
+              ) : (
+                <div className="space-y-4">
+                  <div className="bg-gray-50 p-4 rounded">
+                    <pre className="text-sm">
                       {JSON.stringify(section.content_data, null, 2)}
                     </pre>
                   </div>
-                )}
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                  <Button onClick={() => handleEdit(section)}>
+                    Edit
+                  </Button>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </div>
   );

@@ -10,31 +10,52 @@ interface ContentRendererProps {
   className?: string;
 }
 
+interface TextContent {
+  text: string;
+}
+
+interface CardContent {
+  title: string;
+  content: string;
+}
+
+interface ListContent {
+  title: string;
+  items: string[];
+}
+
+interface HtmlContent {
+  html: string;
+}
+
 export const ContentRenderer: React.FC<ContentRendererProps> = ({ content, className = "" }) => {
   const { content_type, content_data } = content;
 
   switch (content_type) {
     case 'text':
+      const textData = content_data as TextContent;
       return (
         <span className={className}>
-          {content_data.text}
+          {textData.text}
         </span>
       );
 
     case 'card':
+      const cardData = content_data as CardContent;
       return (
         <div className={`bg-orange-50 p-3 rounded-lg ${className}`}>
-          <h4 className="font-semibold text-orange-800">{content_data.title}</h4>
-          <p className="text-sm text-gray-600">{content_data.content}</p>
+          <h4 className="font-semibold text-orange-800">{cardData.title}</h4>
+          <p className="text-sm text-gray-600">{cardData.content}</p>
         </div>
       );
 
     case 'list':
+      const listData = content_data as ListContent;
       return (
         <div className={className}>
-          <h4 className="font-medium mb-2">{content_data.title}</h4>
+          <h4 className="font-medium mb-2">{listData.title}</h4>
           <ul className="text-sm text-gray-600 space-y-1">
-            {content_data.items?.map((item: string, index: number) => (
+            {listData.items?.map((item: string, index: number) => (
               <li key={index}>• {item}</li>
             ))}
           </ul>
@@ -42,10 +63,11 @@ export const ContentRenderer: React.FC<ContentRendererProps> = ({ content, class
       );
 
     case 'html':
+      const htmlData = content_data as HtmlContent;
       return (
         <div 
           className={className}
-          dangerouslySetInnerHTML={{ __html: content_data.html }} 
+          dangerouslySetInnerHTML={{ __html: htmlData.html }} 
         />
       );
 
