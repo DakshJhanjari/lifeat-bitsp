@@ -81,7 +81,7 @@ export const ContentRenderer: React.FC<ContentRendererProps> = ({ content, class
             <h4 className="font-medium mb-2">{content_data.title}</h4>
             <ul className="text-sm text-gray-600 space-y-1">
               {content_data.items?.map((item: string, index: number) => (
-                <li key={index}>• {item}</li>
+                <li key={index}>{item}</li>
               ))}
             </ul>
           </div>
