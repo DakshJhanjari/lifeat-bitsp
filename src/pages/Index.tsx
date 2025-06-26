@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowDown } from "lucide-react";
@@ -11,10 +10,8 @@ import AcademicOrientation from "@/components/sections/AcademicOrientation";
 import ClubsAndCampusLife from "@/components/sections/ClubsAndCampusLife";
 import HealthAndFitness from "@/components/sections/HealthAndFitness";
 import Footer from "@/components/Footer";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+  return <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       <Navigation />
       
       {/* Hero Section */}
@@ -46,11 +43,7 @@ const Index = () => {
             {/* Notification Center */}
             <NotificationCenter />
 
-            <Button 
-              asChild 
-              size="lg" 
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg rounded-full shadow-lg hover-scale mt-6"
-            >
+            <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg rounded-full shadow-lg hover-scale mt-6">
               <a href="https://docs.google.com/forms/d/e/1FAIpQLScj6gDv5GWpG2-UJKa7XJo21FBMvQvGq9WttslX7JPf6YjXlA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
                 🔗 Connect with a Student Mentor 🤝
               </a>
@@ -70,8 +63,6 @@ const Index = () => {
       <HealthAndFitness />
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
