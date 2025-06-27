@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowDown } from "lucide-react";
@@ -10,21 +11,23 @@ import AcademicOrientation from "@/components/sections/AcademicOrientation";
 import ClubsAndCampusLife from "@/components/sections/ClubsAndCampusLife";
 import HealthAndFitness from "@/components/sections/HealthAndFitness";
 import Footer from "@/components/Footer";
+
 const Index = () => {
-  return <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-blue-50">
       <Navigation />
       
       {/* Hero Section */}
       <section id="home" className="pt-20 pb-16 px-4">
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6 animate-fade-in">
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-orange-600 via-amber-600 to-blue-600 bg-clip-text text-transparent mb-6 animate-fade-in">
               Inside BITS
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 mb-8 animate-fade-in">
               🎉 Welcome to BITS Pilani!
             </p>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl mb-8">
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl mb-8 border border-orange-200/50">
               <p className="text-lg text-gray-600 leading-relaxed mb-6">
                 Congratulations on becoming a part of one of India's most vibrant and prestigious institutions! 🎓
               </p>
@@ -34,16 +37,16 @@ const Index = () => {
               <p className="text-base text-gray-500 mb-6">
                 Whether you're a student or a parent, this platform aims to answer your questions, connect you with student mentors, and ensure your onboarding experience is <strong>smooth, stress-free, and exciting</strong>.
               </p>
-              <p className="text-lg font-semibold text-blue-600">
+              <p className="text-lg font-semibold text-orange-600">
                 Let this be the beginning of an incredible journey. <br />
-                <span className="text-purple-600">Welcome home, future BITSian! 💙</span>
+                <span className="text-blue-600">Welcome home, future BITSian! 💙</span>
               </p>
             </div>
 
             {/* Notification Center */}
             <NotificationCenter />
 
-            <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg rounded-full shadow-lg hover-scale mt-6">
+            <Button asChild size="lg" className="bg-gradient-to-r from-orange-500 to-blue-600 hover:from-orange-600 hover:to-blue-700 text-white px-8 py-4 text-lg rounded-full shadow-lg hover-scale mt-6">
               <a href="https://docs.google.com/forms/d/e/1FAIpQLScj6gDv5GWpG2-UJKa7XJo21FBMvQvGq9WttslX7JPf6YjXlA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
                 🔗 Connect with a Student Mentor 🤝
               </a>
@@ -63,6 +66,8 @@ const Index = () => {
       <HealthAndFitness />
       
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
