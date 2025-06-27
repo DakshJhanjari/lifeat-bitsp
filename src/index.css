@@ -1,3 +1,5 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -98,6 +100,28 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+  }
+}
+
+@layer utilities {
+  .text-gradient-yellow-blue {
+    @apply bg-gradient-to-r from-yellow-400 via-yellow-500 to-sky-400 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-red-yellow {
+    @apply bg-gradient-to-r from-red-500 via-red-400 to-yellow-400 bg-clip-text text-transparent;
+  }
+  
+  .bg-gradient-dynamic {
+    @apply bg-gradient-to-br from-yellow-400 via-sky-300 to-red-400;
+  }
+  
+  .hover-scale {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 }
