@@ -29,7 +29,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
             <img
-              src="/lovable-uploads/23bfa35c-87d7-4664-ad10-ff63a358694bb.png"
+              src="/lovable-uploads/14d131b7-3c5f-4324-b92e-245de31eb64f.png"
               alt="Student Union Logo"
               className="h-9 w-9 md:h-10 md:w-10 object-contain"
               style={{minWidth: "2.25rem"}}
