@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, MessageCircle, BookOpen, Instagram, ExternalLink } from "lucide-react";
@@ -72,7 +73,7 @@ const Footer = () => {
             </CardHeader>
             <CardContent className="text-center">
               <div className="space-y-2">
-                <Button asChild variant="outline" size="sm" className="w-full text-white border-white/30">
+                <Button asChild variant="outline" size="sm" className="w-full text-blue-500 border-white/30 hover:text-blue-400">
                   <a href="https://www.instagram.com/bitsoasis" target="_blank" rel="noopener noreferrer">
                     @bitsoasis <ExternalLink className="h-3 w-3 ml-1" />
                   </a>
