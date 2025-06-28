@@ -83,7 +83,7 @@ const Footer = () => {
             </CardHeader>
             <CardContent className="text-center">
               <Button asChild variant="outline" className="w-full text-gray-200 border-gray-600 hover:bg-sky-600/20 hover:border-sky-400 font-bold">
-                <a href="https://notion.so/bits-faqs" target="_blank" rel="noopener noreferrer">
+                <a href="https://accidental-scowl-047.notion.site/2002911fe3e680da8535d0a9c4fbcc97?v=2152911fe3e680348199000c4e079955&source=copy_link" target="_blank" rel="noopener noreferrer">
                   Browse FAQs <ExternalLink className="h-4 w-4 ml-2" />
                 </a>
               </Button>
