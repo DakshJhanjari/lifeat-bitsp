@@ -99,19 +99,19 @@
 
 @layer utilities {
   .text-gradient-white-blue {
-    @apply bg-gradient-to-r from-white via-blue-100 to-blue-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-white via-blue-50 to-blue-900 bg-clip-text text-transparent;
   }
   
   .text-gradient-blue-white {
-    @apply bg-gradient-to-r from-blue-500 via-blue-400 to-white bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-blue-900 via-blue-600 to-white bg-clip-text text-transparent;
   }
   
   .bg-gradient-dynamic {
-    @apply bg-gradient-to-br from-blue-50 via-white to-blue-100;
+    @apply bg-gradient-to-br from-white via-blue-50 to-blue-100;
   }
   
   .bg-gradient-vibrant {
-    @apply bg-gradient-to-br from-white via-blue-50 to-blue-100;
+    @apply bg-gradient-to-br from-white via-blue-50 to-blue-200;
   }
   
   .hover-scale {
@@ -123,10 +123,10 @@
   }
   
   .glass-effect {
-    @apply bg-white/70 backdrop-blur-xl border border-blue-200;
+    @apply bg-white/90 backdrop-blur-xl border border-blue-900/20;
   }
   
   .light-card {
-    @apply bg-white/80 backdrop-blur-xl border border-blue-200;
+    @apply bg-white/95 backdrop-blur-xl border border-blue-900/30;
   }
 }

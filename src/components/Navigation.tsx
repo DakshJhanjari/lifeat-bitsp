@@ -24,7 +24,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-xl z-50 border-b border-blue-200">
+    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-xl z-50 border-b border-blue-900/20">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
@@ -34,7 +34,7 @@ const Navigation = () => {
               className="h-9 w-9 md:h-10 md:w-10 object-contain hover-scale"
               style={{minWidth: "2.25rem"}}
             />
-            <span className="font-poppins font-bold text-xl text-gradient-white-blue drop-shadow-lg">
+            <span className="font-poppins font-bold text-xl text-blue-900 drop-shadow-lg">
               BITS Pilani Guide
             </span>
           </div>
@@ -45,10 +45,10 @@ const Navigation = () => {
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="text-gray-700 font-medium font-inter hover:text-blue-600 transition-all duration-300 hover:scale-110 hover:drop-shadow-lg relative group"
+                className="text-blue-800 font-medium font-inter hover:text-blue-900 transition-all duration-300 hover:scale-110 hover:drop-shadow-lg relative group"
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-blue-900 transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
           </div>
@@ -57,7 +57,7 @@ const Navigation = () => {
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden text-gray-700 hover:text-blue-600 hover:bg-blue-100 transition-all duration-300"
+            className="md:hidden text-blue-800 hover:text-blue-900 hover:bg-blue-100 transition-all duration-300"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -66,12 +66,12 @@ const Navigation = () => {
 
         {/* Mobile Navigation Menu */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-blue-200 bg-white/98 backdrop-blur-sm">
+          <div className="md:hidden py-4 border-t border-blue-900/20 bg-white/98 backdrop-blur-sm">
             {navItems.map((item) => (
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left py-3 px-4 text-gray-700 font-medium font-inter hover:text-blue-600 hover:bg-blue-100 transition-all duration-300 hover:translate-x-2"
+                className="block w-full text-left py-3 px-4 text-blue-800 font-medium font-inter hover:text-blue-900 hover:bg-blue-100 transition-all duration-300 hover:translate-x-2"
               >
                 {item.label}
               </button>
