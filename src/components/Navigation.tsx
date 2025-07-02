@@ -1,24 +1,23 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, Building, Utensils, GraduationCap, Users, Heart, User } from "lucide-react";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { href: "#home", label: "Home" },
-    { href: "#hostel", label: "Hostel Life" },
-    { href: "#mess", label: "Mess & Food" },
-    { href: "#academic", label: "Academics" },
-    { href: "#clubs", label: "Clubs & Life" },
-    { href: "#health", label: "Health & Fitness" },
-    { href: "/daksh-story", label: "Student Story", isRoute: true },
+    { href: "#home", label: "Home", icon: Home },
+    { href: "#hostel", label: "Hostel Life", icon: Building },
+    { href: "#mess", label: "Mess & Food", icon: Utensils },
+    { href: "#academic", label: "Academics", icon: GraduationCap },
+    { href: "#clubs", label: "Clubs & Life", icon: Users },
+    { href: "#health", label: "Health & Fitness", icon: Heart },
+    { href: "/daksh-story", label: "Student Story", icon: User, isRoute: true },
   ];
 
   const scrollToSection = (href: string) => {
     if (href.startsWith('/')) {
-      // It's a route, let the browser handle it
       window.location.href = href;
       return;
     }
@@ -31,56 +30,54 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-xl z-50 border-b border-blue-900/20">
+    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-lg shadow-sm z-50 border-b border-slate-200">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
             <img
               src="/lovable-uploads/14d131b7-3c5f-4324-b92e-245de31eb64f.png"
               alt="Student Union Logo"
-              className="h-9 w-9 md:h-10 md:w-10 object-contain hover-scale"
+              className="h-9 w-9 md:h-10 md:w-10 object-contain hover-lift"
               style={{minWidth: "2.25rem"}}
             />
-            <span className="font-poppins font-bold text-xl text-blue-900 drop-shadow-lg">
+            <span className="font-poppins font-semibold text-xl text-slate-800">
               BITS Pilani Guide
             </span>
           </div>
           
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-1">
             {navItems.map((item) => (
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="text-blue-800 font-medium font-inter hover:text-blue-900 transition-all duration-300 hover:scale-110 hover:drop-shadow-lg relative group"
+                className="flex items-center space-x-2 px-4 py-2 text-slate-600 hover:text-slate-800 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
               >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-blue-900 transition-all duration-300 group-hover:w-full"></span>
+                <item.icon className="h-4 w-4" />
+                <span>{item.label}</span>
               </button>
             ))}
           </div>
 
-          {/* Mobile Navigation Toggle */}
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden text-blue-800 hover:text-blue-900 hover:bg-blue-100 transition-all duration-300"
+            className="md:hidden text-slate-600 hover:text-slate-800 hover:bg-slate-50"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
 
-        {/* Mobile Navigation Menu */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-blue-900/20 bg-white/98 backdrop-blur-sm">
+          <div className="md:hidden py-4 border-t border-slate-200 bg-white/98 backdrop-blur-sm">
             {navItems.map((item) => (
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left py-3 px-4 text-blue-800 font-medium font-inter hover:text-blue-900 hover:bg-blue-100 transition-all duration-300 hover:translate-x-2"
+                className="flex items-center space-x-3 w-full text-left py-3 px-4 text-slate-600 hover:text-slate-800 hover:bg-slate-50 transition-all duration-200"
               >
-                {item.label}
+                <item.icon className="h-4 w-4" />
+                <span className="font-medium">{item.label}</span>
               </button>
             ))}
           </div>
