@@ -37,10 +37,9 @@ const Navigation = () => {
             <img
               src="/lovable-uploads/14d131b7-3c5f-4324-b92e-245de31eb64f.png"
               alt="Student Union Logo"
-              className="h-9 w-9 md:h-10 md:w-10 object-contain hover-lift"
-              style={{minWidth: "2.25rem"}}
+              className="h-8 w-8 object-contain"
             />
-            <span className="font-poppins font-semibold text-xl text-slate-800">
+            <span className="font-poppins font-semibold text-lg text-slate-800">
               BITS Pilani Guide
             </span>
           </div>
@@ -50,7 +49,7 @@ const Navigation = () => {
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="flex items-center space-x-2 px-4 py-2 text-slate-600 hover:text-slate-800 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
+                className="flex items-center space-x-2 px-3 py-2 text-slate-600 hover:text-slate-800 hover:bg-slate-50 rounded-lg transition-colors duration-200 text-sm font-medium"
               >
                 <item.icon className="h-4 w-4" />
                 <span>{item.label}</span>
@@ -61,7 +60,7 @@ const Navigation = () => {
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden text-slate-600 hover:text-slate-800 hover:bg-slate-50"
+            className="md:hidden"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -69,12 +68,12 @@ const Navigation = () => {
         </div>
 
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-slate-200 bg-white/98 backdrop-blur-sm">
+          <div className="md:hidden py-4 border-t border-slate-200">
             {navItems.map((item) => (
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="flex items-center space-x-3 w-full text-left py-3 px-4 text-slate-600 hover:text-slate-800 hover:bg-slate-50 transition-all duration-200"
+                className="flex items-center space-x-3 w-full text-left py-3 px-4 text-slate-600 hover:text-slate-800 hover:bg-slate-50 transition-colors duration-200"
               >
                 <item.icon className="h-4 w-4" />
                 <span className="font-medium">{item.label}</span>
