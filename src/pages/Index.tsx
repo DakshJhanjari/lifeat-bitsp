@@ -91,6 +91,29 @@ const Index = () => {
               <NotificationCenter />
             </div>
 
+            {/* Featured Student Story */}
+            <div className="animate-fade-in mb-8" style={{animationDelay: '1.0s'}}>
+              <Card className="glass-effect shadow-2xl border-2 border-blue-900/30 hover-scale">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-blue-900 font-poppins flex items-center justify-center">
+                    <Heart className="h-6 w-6 mr-3 text-red-500" />
+                    Real Student Story
+                    <Heart className="h-6 w-6 ml-3 text-red-500" />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-lg text-blue-800 mb-6 font-inter">
+                    Read Daksh's inspiring journey from initial reluctance to finding his true home at BITS Pilani
+                  </p>
+                  <Button asChild size="lg" className="bg-gradient-to-r from-blue-800 via-blue-600 to-blue-800 text-white hover:from-blue-700 hover:via-blue-500 hover:to-blue-700 px-8 py-4 text-lg font-bold rounded-full shadow-2xl hover-scale border border-blue-700/30 font-poppins">
+                    <Link to="/daksh-story">
+                      📖 Read Daksh's Story ✨
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
             <div className="animate-fade-in" style={{animationDelay: '1.2s'}}>
               <Button asChild size="lg" className="bg-gradient-to-r from-blue-900 via-blue-700 to-blue-900 text-white hover:from-blue-800 hover:via-blue-600 hover:to-blue-800 px-10 py-6 text-xl font-bold rounded-full shadow-2xl hover-scale border border-blue-800/30 font-poppins">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScj6gDv5GWpG2-UJKa7XJo21FBMvQvGq9WttslX7JPf6YjXlA/viewform?usp=header" target="_blank" rel="noopener noreferrer">

@@ -13,9 +13,16 @@ const Navigation = () => {
     { href: "#academic", label: "Academics" },
     { href: "#clubs", label: "Clubs & Life" },
     { href: "#health", label: "Health & Fitness" },
+    { href: "/daksh-story", label: "Student Story", isRoute: true },
   ];
 
   const scrollToSection = (href: string) => {
+    if (href.startsWith('/')) {
+      // It's a route, let the browser handle it
+      window.location.href = href;
+      return;
+    }
+    
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
