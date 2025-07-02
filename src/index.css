@@ -79,22 +79,46 @@
 
 @layer utilities {
   .text-gradient-primary {
-    @apply bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-secondary {
+    @apply bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent;
   }
   
   .bg-gradient-subtle {
-    @apply bg-gradient-to-br from-white via-slate-50 to-blue-50;
+    @apply bg-gradient-to-br from-blue-50 via-purple-50 to-teal-50;
+  }
+  
+  .bg-gradient-vibrant {
+    @apply bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500;
+  }
+  
+  .bg-gradient-warm {
+    @apply bg-gradient-to-r from-orange-400 to-pink-400;
   }
   
   .hover-lift {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:scale-105;
   }
   
   .glass-card {
-    @apply bg-white/95 backdrop-blur-sm border border-slate-200 shadow-sm;
+    @apply bg-white/90 backdrop-blur-md border border-white/20 shadow-lg;
   }
   
-  .professional-card {
-    @apply bg-white border border-slate-200 shadow-sm;
+  .student-card {
+    @apply bg-gradient-to-br from-white to-blue-50/50 border-2 border-blue-100 shadow-md;
+  }
+  
+  .vibrant-card {
+    @apply bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200;
+  }
+  
+  .bounce-gentle {
+    @apply animate-bounce-in;
+  }
+  
+  .pulse-soft {
+    @apply animate-pulse;
   }
 }

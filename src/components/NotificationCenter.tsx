@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -78,11 +79,11 @@ const NotificationCenter = () => {
   const getBgColor = (type: string) => {
     switch (type) {
       case "warning":
-        return "bg-orange-50 border-orange-200";
+        return "bg-gradient-to-r from-orange-50 to-yellow-50 border-orange-200";
       case "success":
-        return "bg-green-50 border-green-200";
+        return "bg-gradient-to-r from-green-50 to-teal-50 border-green-200";
       default:
-        return "bg-blue-50 border-blue-200";
+        return "bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200";
     }
   };
 
@@ -104,12 +105,36 @@ const NotificationCenter = () => {
     });
   };
 
+  // Function to render text with clickable links
+  const renderMessageWithLinks = (message: string) => {
+    // Regular expression to find URLs
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const parts = message.split(urlRegex);
+    
+    return parts.map((part, index) => {
+      if (urlRegex.test(part)) {
+        return (
+          <a
+            key={index}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-800 underline font-semibold"
+          >
+            {part}
+          </a>
+        );
+      }
+      return part;
+    });
+  };
+
   return (
     <div className="mb-8">
       <Button
         onClick={() => setIsOpen(!isOpen)}
         variant="outline"
-        className="relative bg-white/90 backdrop-blur-sm border-2 border-blue-200 hover:border-blue-300"
+        className="relative bg-gradient-to-r from-blue-100 to-purple-100 backdrop-blur-sm border-2 border-blue-300 hover:border-purple-300 font-bold text-slate-700 hover-lift"
         disabled={loading}
       >
         {loading ? (
@@ -117,67 +142,72 @@ const NotificationCenter = () => {
         ) : (
           <Bell className="h-5 w-5 mr-2" />
         )}
-        Notifications
+        🔔 Notifications
         {newNotificationsCount > 0 && (
-          <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 text-xs flex items-center justify-center">
+          <span className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-full w-7 h-7 text-sm flex items-center justify-center font-bold shadow-lg animate-pulse">
             {newNotificationsCount}
           </span>
         )}
       </Button>
 
       {isOpen && (
-        <Card className="mt-4 max-w-2xl mx-auto bg-white/95 backdrop-blur-sm shadow-xl">
+        <Card className="mt-4 max-w-2xl mx-auto bg-white/95 backdrop-blur-sm shadow-2xl border-2 border-purple-200">
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
-              <span>🔔 Notifications</span>
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                🔔 Notifications
+              </span>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsOpen(false)}
+                className="hover:bg-red-100"
               >
                 <X className="h-4 w-4" />
               </Button>
             </CardTitle>
-            <CardDescription>
-              Stay updated with important announcements and reminders
+            <CardDescription className="text-lg font-medium text-slate-600">
+              Stay updated with important announcements and reminders! ✨
             </CardDescription>
           </CardHeader>
           <CardContent>
             {loading ? (
               <div className="flex items-center justify-center py-8">
-                <Loader2 className="h-8 w-8 animate-spin" />
-                <span className="ml-2">Loading notifications...</span>
+                <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+                <span className="ml-2 font-semibold text-slate-600">Loading notifications...</span>
               </div>
             ) : visibleNotifications.length === 0 ? (
-              <p className="text-center text-gray-500 py-4">No notifications at the moment</p>
+              <p className="text-center text-gray-500 py-6 text-lg font-medium">No notifications at the moment 📭</p>
             ) : (
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {visibleNotifications.map((notification) => (
                   <div
                     key={notification.id}
-                    className={`p-4 rounded-lg border ${getBgColor(notification.type)} relative`}
+                    className={`p-5 rounded-xl border-2 ${getBgColor(notification.type)} relative hover-lift`}
                   >
-                    <div className="flex items-start gap-3">
+                    <div className="flex items-start gap-4">
                       {getIcon(notification.type)}
                       <div className="flex-1">
                         <div className="flex items-center justify-between">
-                          <h4 className="font-semibold text-gray-800">
+                          <h4 className="font-bold text-gray-800 text-lg">
                             {notification.title}
-                            <span className="ml-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                              New
+                            <span className="ml-3 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full font-bold animate-pulse">
+                              ✨ New
                             </span>
                           </h4>
                           <Button
                             variant="ghost"
                             size="sm"
                             onClick={() => dismissNotification(notification.id)}
-                            className="h-6 w-6 p-0"
+                            className="h-8 w-8 p-0 hover:bg-red-100"
                           >
-                            <X className="h-3 w-3" />
+                            <X className="h-4 w-4" />
                           </Button>
                         </div>
-                        <p className="text-sm text-gray-600 mt-1">{notification.message}</p>
-                        <p className="text-xs text-gray-500 mt-2">{formatDate(notification.created_at)}</p>
+                        <p className="text-sm text-gray-700 mt-2 font-medium leading-relaxed">
+                          {renderMessageWithLinks(notification.message)}
+                        </p>
+                        <p className="text-xs text-gray-500 mt-3 font-semibold">{formatDate(notification.created_at)}</p>
                       </div>
                     </div>
                   </div>

@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowDown, Users, BookOpen, Star, Award, Target, Heart } from "lucide-react";
+import { ArrowDown, Users, BookOpen, Star, Award, Target, Heart, Sparkles, GraduationCap } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import NotificationCenter from "@/components/NotificationCenter";
@@ -19,55 +19,68 @@ const Index = () => {
       
       <section id="home" className="pt-24 pb-16 px-4">
         <div className="container mx-auto text-center">
-          <div className="max-w-4xl mx-auto">
-            <div className="mb-8">
-              <h1 className="text-5xl md:text-7xl font-bold font-poppins text-gradient-primary mb-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="mb-8 bounce-gentle">
+              <h1 className="text-6xl md:text-8xl font-bold font-poppins text-gradient-primary mb-6">
                 Inside BITS
               </h1>
-              <p className="text-xl md:text-2xl font-semibold text-slate-700 mb-2">
-                Welcome to BITS Pilani
-              </p>
-              <p className="text-lg text-slate-600">
-                Your comprehensive guide to campus life and academics
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Sparkles className="h-6 w-6 text-purple-500" />
+                <p className="text-2xl md:text-3xl font-bold text-slate-700">
+                  Welcome to BITS Pilani
+                </p>
+                <Sparkles className="h-6 w-6 text-teal-500" />
+              </div>
+              <p className="text-lg md:text-xl text-slate-600 font-medium">
+                Your ultimate guide to campus life, academics, and endless possibilities! 🎓
               </p>
             </div>
             
-            <div className="glass-card rounded-2xl p-8 md:p-10 mb-10 hover-lift">
+            <div className="student-card rounded-3xl p-8 md:p-12 mb-10 hover-lift">
               <div className="flex items-center justify-center mb-6">
-                <Award className="h-6 w-6 text-blue-600 mr-3" />
-                <h2 className="text-xl md:text-2xl font-semibold text-slate-800">
-                  Congratulations, Future BITSian!
+                <div className="bg-gradient-vibrant p-3 rounded-full mr-4">
+                  <Award className="h-8 w-8 text-white" />
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-800 font-poppins">
+                  Congratulations, Future BITSian! 🎉
                 </h2>
               </div>
               
-              <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                You've secured admission to one of India's most <span className="font-semibold text-slate-800">prestigious</span> and <span className="font-semibold text-slate-800">innovative</span> institutions.
+              <p className="text-xl text-slate-700 leading-relaxed mb-8 font-medium">
+                You've secured admission to one of India's most <span className="text-gradient-secondary font-bold">prestigious</span> and <span className="text-gradient-secondary font-bold">innovative</span> institutions. 
+                Get ready for an incredible journey! ✨
               </p>
               
               <div className="grid md:grid-cols-3 gap-6 mb-8">
-                <div className="professional-card p-6 rounded-xl hover-lift">
-                  <Target className="h-8 w-8 text-blue-600 mb-3" />
-                  <h3 className="font-semibold text-slate-800 text-lg mb-2">Get Oriented</h3>
-                  <p className="text-slate-600 text-sm">From campus navigation to academic planning</p>
+                <div className="vibrant-card p-6 rounded-2xl hover-lift">
+                  <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-3 rounded-full w-fit mb-4">
+                    <Target className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="font-bold text-slate-800 text-xl mb-3 font-poppins">Get Oriented</h3>
+                  <p className="text-slate-600 text-sm font-medium">From campus navigation to academic planning - we've got you covered!</p>
                 </div>
-                <div className="professional-card p-6 rounded-xl hover-lift">
-                  <Users className="h-8 w-8 text-blue-600 mb-3" />
-                  <h3 className="font-semibold text-slate-800 text-lg mb-2">Connect</h3>
-                  <p className="text-slate-600 text-sm">Build lasting relationships and networks</p>
+                <div className="vibrant-card p-6 rounded-2xl hover-lift">
+                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-3 rounded-full w-fit mb-4">
+                    <Users className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="font-bold text-slate-800 text-xl mb-3 font-poppins">Connect</h3>
+                  <p className="text-slate-600 text-sm font-medium">Build lasting friendships and professional networks that'll last a lifetime!</p>
                 </div>
-                <div className="professional-card p-6 rounded-xl hover-lift">
-                  <BookOpen className="h-8 w-8 text-blue-600 mb-3" />
-                  <h3 className="font-semibold text-slate-800 text-lg mb-2">Excel</h3>
-                  <p className="text-slate-600 text-sm">Discover opportunities and achieve your goals</p>
+                <div className="vibrant-card p-6 rounded-2xl hover-lift">
+                  <div className="bg-gradient-to-r from-teal-500 to-blue-500 p-3 rounded-full w-fit mb-4">
+                    <GraduationCap className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="font-bold text-slate-800 text-xl mb-3 font-poppins">Excel</h3>
+                  <p className="text-slate-600 text-sm font-medium">Discover amazing opportunities and achieve your wildest dreams!</p>
                 </div>
               </div>
               
-              <div className="bg-gradient-to-r from-blue-50 to-slate-50 p-6 rounded-xl border border-slate-200">
-                <p className="text-lg font-semibold text-slate-800 mb-2">
-                  Your journey to excellence starts here
+              <div className="bg-gradient-to-r from-blue-100 via-purple-100 to-teal-100 p-8 rounded-2xl border-2 border-purple-200">
+                <p className="text-xl font-bold text-slate-800 mb-3 font-poppins">
+                  🚀 Your journey to excellence starts here!
                 </p>
-                <p className="text-slate-600">
-                  Welcome to the BITS Pilani community - where innovation meets tradition.
+                <p className="text-slate-700 font-medium text-lg">
+                  Welcome to the BITS Pilani community - where innovation meets tradition and dreams become reality! 🌟
                 </p>
               </div>
             </div>
@@ -77,34 +90,36 @@ const Index = () => {
             </div>
 
             <div className="mb-8">
-              <Card className="professional-card hover-lift">
-                <CardHeader className="text-center">
-                  <CardTitle className="text-xl text-slate-800 font-semibold flex items-center justify-center">
-                    <Star className="h-5 w-5 mr-2 text-amber-500" />
-                    Student Success Story
+              <Card className="student-card hover-lift border-2 border-orange-200">
+                <CardHeader className="text-center pb-4">
+                  <CardTitle className="text-2xl text-slate-800 font-bold flex items-center justify-center font-poppins">
+                    <div className="bg-gradient-warm p-2 rounded-full mr-3">
+                      <Star className="h-6 w-6 text-white" />
+                    </div>
+                    From the Office...
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <p className="text-slate-600 mb-6">
-                    Read about Daksh's inspiring journey from initial uncertainty to finding his place at BITS Pilani
+                  <p className="text-slate-600 mb-6 text-lg font-medium">
+                    Experience and advice from the seniors - Real stories, real insights! 💡
                   </p>
-                  <Button asChild className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium px-6 py-2 rounded-lg shadow-sm hover-lift">
-                    <Link to="/daksh-story">Read Story</Link>
+                  <Button asChild className="bg-gradient-warm hover:from-orange-500 hover:to-pink-500 text-white font-bold px-8 py-3 rounded-xl shadow-lg hover-lift text-lg">
+                    <Link to="/daksh-story">Read Story 📖</Link>
                   </Button>
                 </CardContent>
               </Card>
             </div>
 
             <div className="mb-12">
-              <Button asChild size="lg" className="bg-gradient-to-r from-slate-800 to-blue-800 hover:from-slate-700 hover:to-blue-700 text-white font-medium px-8 py-3 rounded-lg shadow-sm hover-lift">
+              <Button asChild size="lg" className="bg-gradient-vibrant hover:from-blue-600 hover:via-purple-600 hover:to-teal-600 text-white font-bold px-10 py-4 rounded-xl shadow-lg hover-lift text-xl">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScj6gDv5GWpG2-UJKa7XJo21FBMvQvGq9WttslX7JPf6YjXlA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-                  Connect with a Student Mentor
+                  Connect with a Student Mentor 🤝
                 </a>
               </Button>
             </div>
             
             <div className="animate-bounce">
-              <ArrowDown className="mx-auto h-8 w-8 text-slate-400" />
+              <ArrowDown className="mx-auto h-10 w-10 text-purple-500" />
             </div>
           </div>
         </div>
