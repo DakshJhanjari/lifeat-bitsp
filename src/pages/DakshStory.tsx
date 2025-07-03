@@ -17,7 +17,7 @@ const DakshStory = () => {
           <div className="max-w-4xl mx-auto">
             {/* Back Button */}
             <div className="mb-8">
-              <Button asChild variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-50">
+              <Button asChild variant="outline" className="border-red-300 text-slate-700 hover:bg-red-50">
                 <Link to="/">
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Back to Home
@@ -33,9 +33,9 @@ const DakshStory = () => {
                   <img
                     src="/lovable-uploads/84661b34-1e9d-4a52-b470-24a5e4d8f91b.png"
                     alt="Daksh Jhanjari"
-                    className="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full border-4 border-slate-200 shadow-lg hover-lift"
+                    className="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full border-4 border-red-200 shadow-lg hover-lift"
                   />
-                  <div className="absolute -bottom-2 -right-2 bg-blue-600 rounded-full p-3 shadow-lg">
+                  <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-red-500 to-blue-500 rounded-full p-3 shadow-lg">
                     <Star className="h-6 w-6 text-white" />
                   </div>
                 </div>
@@ -70,14 +70,14 @@ const DakshStory = () => {
                     href="https://www.instagram.com/dakshjhanjhari" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-2 bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 transition-all duration-300 hover-lift shadow-sm"
+                    className="flex items-center space-x-2 bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-all duration-300 hover-lift shadow-sm"
                   >
                     <Instagram className="h-5 w-5" />
                     <span className="font-medium">Instagram</span>
                   </a>
                 </div>
 
-                <div className="bg-gradient-to-r from-slate-50 to-blue-50 p-6 rounded-xl border border-slate-200">
+                <div className="bg-gradient-to-r from-red-50 via-white to-blue-50 p-6 rounded-xl border border-red-200">
                   <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-3 font-poppins">
                     From Reluctance to Belonging: My BITS Pilani Story
                   </h2>
@@ -100,7 +100,7 @@ const DakshStory = () => {
             <Card className="professional-card hover-lift">
               <CardHeader>
                 <CardTitle className="flex items-center text-2xl text-slate-800 font-poppins">
-                  <Target className="h-6 w-6 mr-3 text-blue-600" />
+                  <Target className="h-6 w-6 mr-3 text-red-600" />
                   The Beginning
                 </CardTitle>
               </CardHeader>
@@ -136,7 +136,7 @@ const DakshStory = () => {
             <Card className="professional-card hover-lift">
               <CardHeader>
                 <CardTitle className="flex items-center text-2xl text-slate-800 font-poppins">
-                  <Users className="h-6 w-6 mr-3 text-blue-600" />
+                  <Users className="h-6 w-6 mr-3 text-red-600" />
                   First Week & Finding My Place
                 </CardTitle>
               </CardHeader>
@@ -178,7 +178,7 @@ const DakshStory = () => {
             <Card className="professional-card hover-lift">
               <CardHeader>
                 <CardTitle className="flex items-center text-2xl text-slate-800 font-poppins">
-                  <Heart className="h-6 w-6 mr-3 text-blue-600" />
+                  <Heart className="h-6 w-6 mr-3 text-red-600" />
                   What Makes BITS Special
                 </CardTitle>
               </CardHeader>
@@ -193,14 +193,14 @@ const DakshStory = () => {
             </Card>
 
             {/* Advice Section */}
-            <Card className="glass-card shadow-lg border-2 border-slate-200">
+            <Card className="glass-card shadow-lg border-2 border-red-200">
               <CardHeader>
                 <CardTitle className="text-3xl text-slate-800 text-center font-poppins">
                   Words of Wisdom
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="bg-gradient-to-r from-slate-50 to-blue-50 p-6 rounded-xl border border-slate-200">
+                <div className="bg-gradient-to-r from-red-50 via-white to-blue-50 p-6 rounded-xl border border-red-200">
                   <p className="text-xl font-semibold text-slate-800 mb-4 font-poppins text-center">
                     If I could speak to my pre-BITS self, I'd say:
                   </p>
@@ -216,7 +216,7 @@ const DakshStory = () => {
                   </p>
                 </div>
 
-                <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
+                <div className="bg-gradient-to-r from-blue-50 via-white to-red-50 p-6 rounded-xl border border-blue-200">
                   <p className="text-xl font-semibold text-slate-800 text-center font-poppins">
                     And why am I sharing all this?
                   </p>
@@ -229,7 +229,7 @@ const DakshStory = () => {
 
             {/* Call to Action */}
             <div className="text-center">
-              <Button asChild size="lg" className="bg-gradient-to-r from-slate-800 to-blue-800 hover:from-slate-700 hover:to-blue-700 text-white px-10 py-4 text-lg font-semibold rounded-lg shadow-sm hover-lift">
+              <Button asChild size="lg" className="bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 text-white px-10 py-4 text-lg font-semibold rounded-lg shadow-sm hover-lift">
                 <Link to="/">
                   Continue Your BITS Journey
                 </Link>
