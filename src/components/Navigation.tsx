@@ -31,21 +31,24 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-lg shadow-lg z-50 border-b-2 border-red-200">
+    <nav className="fixed top-0 left-0 right-0 bg-gradient-to-r from-red-100 via-white to-blue-100 backdrop-blur-lg shadow-lg z-50 border-b-2 border-red-200">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 min-w-0">
             <img
               src="/lovable-uploads/14d131b7-3c5f-4324-b92e-245de31eb64f.png"
               alt="Student Union Logo"
-              className="h-10 w-10 object-contain"
+              className="h-10 w-10 object-contain flex-shrink-0"
             />
-            <span className="font-poppins font-bold text-lg sm:text-xl bg-gradient-to-r from-red-600 via-blue-600 to-red-600 bg-clip-text text-transparent whitespace-nowrap">
+            <span className="font-poppins font-bold text-lg sm:text-xl bg-gradient-to-r from-red-600 via-blue-600 to-red-600 bg-clip-text text-transparent truncate">
               BITS Pilani Guide
             </span>
           </div>
           
           <div className="hidden lg:flex items-center space-x-2">
+            <div className="mr-4">
+              <NotificationCenter />
+            </div>
             {navItems.map((item) => (
               <button
                 key={item.href}
@@ -53,12 +56,9 @@ const Navigation = () => {
                 className="flex items-center space-x-2 px-3 py-2 text-slate-700 hover:text-white hover:bg-gradient-to-r hover:from-red-500 hover:to-blue-500 rounded-lg transition-all duration-300 text-sm font-semibold shadow-sm"
               >
                 <item.icon className="h-4 w-4" />
-                <span>{item.label}</span>
+                <span className="whitespace-nowrap">{item.label}</span>
               </button>
             ))}
-            <div className="ml-4">
-              <NotificationCenter />
-            </div>
           </div>
 
           <Button
@@ -73,6 +73,9 @@ const Navigation = () => {
 
         {isOpen && (
           <div className="lg:hidden py-4 border-t border-red-200 bg-gradient-to-r from-red-50 to-blue-50">
+            <div className="px-6 py-2 mb-3">
+              <NotificationCenter />
+            </div>
             {navItems.map((item) => (
               <button
                 key={item.href}
@@ -83,9 +86,6 @@ const Navigation = () => {
                 <span>{item.label}</span>
               </button>
             ))}
-            <div className="px-6 py-2">
-              <NotificationCenter />
-            </div>
           </div>
         )}
       </div>

@@ -13,7 +13,7 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-blue-50">
       <Navigation />
       
       <section id="home" className="pt-24 pb-16 px-4">
