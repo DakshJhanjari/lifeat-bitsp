@@ -33,23 +33,23 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-lg shadow-lg z-50 border-b-2 border-gradient-to-r from-blue-200 to-purple-200">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 min-w-0 flex-shrink-0">
             <img
               src="/lovable-uploads/14d131b7-3c5f-4324-b92e-245de31eb64f.png"
               alt="Student Union Logo"
-              className="h-10 w-10 object-contain"
+              className="h-8 w-8 sm:h-10 sm:w-10 object-contain flex-shrink-0"
             />
-            <span className="font-poppins font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="font-poppins font-bold text-base sm:text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent truncate">
               BITS Pilani Guide
             </span>
           </div>
           
-          <div className="hidden md:flex space-x-2">
+          <div className="hidden md:flex space-x-2 flex-shrink-0">
             {navItems.map((item) => (
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="flex items-center space-x-2 px-4 py-2 text-slate-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 rounded-lg transition-all duration-300 text-sm font-semibold shadow-sm"
+                className="flex items-center space-x-2 px-3 py-2 text-slate-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 rounded-lg transition-all duration-300 text-sm font-semibold shadow-sm whitespace-nowrap"
               >
                 <item.icon className="h-4 w-4" />
                 <span>{item.label}</span>
@@ -60,7 +60,7 @@ const Navigation = () => {
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100"
+            className="md:hidden hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100 flex-shrink-0"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
