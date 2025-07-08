@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowDown, Users, BookOpen, Star, Award, Target, Heart, Sparkles, GraduationCap, Utensils } from "lucide-react";
@@ -203,7 +204,7 @@ const Index = () => {
                     <div className="bg-gradient-to-r from-yellow-500 to-orange-500 p-3 rounded-full w-fit mx-auto mb-3">
                       <Star className="h-6 w-6 text-white" />
                     </div>
-                    <CardTitle className="text-lg font-bold text-slate-800">Senior Stories</CardTitle>
+                    <CardTitle className="text-lg font-bold text-slate-800">From the Office...</CardTitle>
                   </CardHeader>
                   <CardContent className="text-center">
                     <p className="text-slate-600 mb-4 text-sm leading-relaxed">
