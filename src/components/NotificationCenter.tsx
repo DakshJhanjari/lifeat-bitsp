@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -130,92 +129,91 @@ const NotificationCenter = () => {
   };
 
   return (
-    <div className="mb-8">
+    <div className="relative">
       <Button
         onClick={() => setIsOpen(!isOpen)}
-        variant="outline"
-        className="relative bg-gradient-to-r from-blue-100 to-purple-100 backdrop-blur-sm border-2 border-blue-300 hover:border-purple-300 font-bold text-slate-700 hover-lift"
+        variant="ghost"
+        size="sm"
+        className="relative h-8 w-8 p-0 hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100"
         disabled={loading}
       >
         {loading ? (
-          <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+          <Loader2 className="h-4 w-4 animate-spin" />
         ) : (
-          <Bell className="h-5 w-5 mr-2" />
+          <Bell className="h-4 w-4" />
         )}
-        🔔 Notifications
         {newNotificationsCount > 0 && (
-          <span className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-full w-7 h-7 text-sm flex items-center justify-center font-bold shadow-lg animate-pulse">
-            {newNotificationsCount}
+          <span className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center font-bold shadow-lg animate-pulse">
+            {newNotificationsCount > 9 ? '9+' : newNotificationsCount}
           </span>
         )}
       </Button>
 
       {isOpen && (
-        <Card className="mt-4 max-w-2xl mx-auto bg-white/95 backdrop-blur-sm shadow-2xl border-2 border-purple-200">
-          <CardHeader>
-            <CardTitle className="flex items-center justify-between">
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                🔔 Notifications
-              </span>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsOpen(false)}
-                className="hover:bg-red-100"
-              >
-                <X className="h-4 w-4" />
-              </Button>
-            </CardTitle>
-            <CardDescription className="text-lg font-medium text-slate-600">
-              Stay updated with important announcements and reminders! ✨
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {loading ? (
-              <div className="flex items-center justify-center py-8">
-                <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
-                <span className="ml-2 font-semibold text-slate-600">Loading notifications...</span>
-              </div>
-            ) : visibleNotifications.length === 0 ? (
-              <p className="text-center text-gray-500 py-6 text-lg font-medium">No notifications at the moment 📭</p>
-            ) : (
-              <div className="space-y-4">
-                {visibleNotifications.map((notification) => (
-                  <div
-                    key={notification.id}
-                    className={`p-5 rounded-xl border-2 ${getBgColor(notification.type)} relative hover-lift`}
-                  >
-                    <div className="flex items-start gap-4">
-                      {getIcon(notification.type)}
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between">
-                          <h4 className="font-bold text-gray-800 text-lg">
-                            {notification.title}
-                            <span className="ml-3 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full font-bold animate-pulse">
-                              ✨ New
-                            </span>
-                          </h4>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => dismissNotification(notification.id)}
-                            className="h-8 w-8 p-0 hover:bg-red-100"
-                          >
-                            <X className="h-4 w-4" />
-                          </Button>
+        <div className="absolute top-full right-0 mt-2 z-50">
+          <Card className="w-80 sm:w-96 max-w-[90vw] bg-white/95 backdrop-blur-sm shadow-2xl border-2 border-purple-200">
+            <CardHeader className="pb-3">
+              <CardTitle className="flex items-center justify-between">
+                <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  🔔 Notifications
+                </span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsOpen(false)}
+                  className="h-6 w-6 p-0 hover:bg-red-100"
+                >
+                  <X className="h-3 w-3" />
+                </Button>
+              </CardTitle>
+              <CardDescription className="text-sm font-medium text-slate-600">
+                Stay updated with important announcements! ✨
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="max-h-80 overflow-y-auto">
+              {loading ? (
+                <div className="flex items-center justify-center py-6">
+                  <Loader2 className="h-6 w-6 animate-spin text-purple-500" />
+                  <span className="ml-2 text-sm font-semibold text-slate-600">Loading...</span>
+                </div>
+              ) : visibleNotifications.length === 0 ? (
+                <p className="text-center text-gray-500 py-4 text-sm font-medium">No notifications 📭</p>
+              ) : (
+                <div className="space-y-3">
+                  {visibleNotifications.map((notification) => (
+                    <div
+                      key={notification.id}
+                      className={`p-3 rounded-lg border ${getBgColor(notification.type)} relative hover-lift`}
+                    >
+                      <div className="flex items-start gap-3">
+                        {getIcon(notification.type)}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-2">
+                            <h4 className="font-semibold text-gray-800 text-sm truncate">
+                              {notification.title}
+                            </h4>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => dismissNotification(notification.id)}
+                              className="h-6 w-6 p-0 hover:bg-red-100 flex-shrink-0"
+                            >
+                              <X className="h-3 w-3" />
+                            </Button>
+                          </div>
+                          <p className="text-xs text-gray-700 mt-1 font-medium leading-relaxed">
+                            {renderMessageWithLinks(notification.message)}
+                          </p>
+                          <p className="text-xs text-gray-500 mt-2 font-semibold">{formatDate(notification.created_at)}</p>
                         </div>
-                        <p className="text-sm text-gray-700 mt-2 font-medium leading-relaxed">
-                          {renderMessageWithLinks(notification.message)}
-                        </p>
-                        <p className="text-xs text-gray-500 mt-3 font-semibold">{formatDate(notification.created_at)}</p>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </CardContent>
-        </Card>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
       )}
     </div>
   );

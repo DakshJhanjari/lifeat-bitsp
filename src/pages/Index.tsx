@@ -3,7 +3,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ArrowDown, Users, BookOpen, Star, Award, Target, Heart, Sparkles, GraduationCap, Utensils } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
-import NotificationCenter from "@/components/NotificationCenter";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -77,10 +76,6 @@ const Index = () => {
                   Welcome to the BITS Pilani community - where innovation meets tradition and dreams become reality! 🌟
                 </p>
               </div>
-            </div>
-
-            <div className="mb-6 sm:mb-8">
-              <NotificationCenter />
             </div>
 
             <div className="mb-6 sm:mb-8">

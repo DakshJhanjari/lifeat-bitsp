@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Home, Building, Utensils, GraduationCap, Users, Heart, User } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import NotificationCenter from "@/components/NotificationCenter";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +30,7 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-lg shadow-lg z-50 border-b-2 border-gradient-to-r from-blue-200 to-purple-200">
       <div className="container mx-auto px-3 sm:px-4">
         <div className="flex items-center justify-between h-14 sm:h-16">
-          <Link to="/" className="flex items-center space-x-1 sm:space-x-2 min-w-0 flex-shrink-0 max-w-[60%] sm:max-w-none">
+          <Link to="/" className="flex items-center space-x-1 sm:space-x-2 min-w-0 flex-shrink-0 max-w-[40%] sm:max-w-none">
             <img
               src="/lovable-uploads/14d131b7-3c5f-4324-b92e-245de31eb64f.png"
               alt="Student Union Logo"
@@ -58,14 +59,18 @@ const Navigation = () => {
             ))}
           </div>
 
-          <Button
-            variant="ghost"
-            size="sm"
-            className="md:hidden hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100 flex-shrink-0 h-8 w-8 p-0"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-          </Button>
+          <div className="flex items-center space-x-2">
+            <NotificationCenter />
+            
+            <Button
+              variant="ghost"
+              size="sm"
+              className="md:hidden hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100 flex-shrink-0 h-8 w-8 p-0"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </Button>
+          </div>
         </div>
 
         {isOpen && (
