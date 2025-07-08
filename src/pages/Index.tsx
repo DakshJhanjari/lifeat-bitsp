@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowDown, Users, BookOpen, Star, Award, Target, Heart, Sparkles, GraduationCap } from "lucide-react";
+import { ArrowDown, Users, BookOpen, Star, Award, Target, Heart, Sparkles, GraduationCap, Utensils } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import NotificationCenter from "@/components/NotificationCenter";
