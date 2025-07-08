@@ -1,7 +1,7 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Calendar, GraduationCap, Users, ExternalLink, AlertCircle } from "lucide-react";
+import { BookOpen, Calendar, GraduationCap, Users, ExternalLink, AlertCircle, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const AcademicOrientation = () => {
   return (
@@ -15,6 +15,49 @@ const AcademicOrientation = () => {
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             At BITS, there's no fixed class section—you customize your academic schedule by picking your preferred courses, timings, and even professors. This freedom can be exciting but also a little intimidating at first.
           </p>
+        </div>
+
+        {/* Quick Links to Sub-pages */}
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
+          <Card className="hover-scale border-2 border-blue-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <GraduationCap className="h-5 w-5 text-blue-600" />
+                ERP Portal Guide
+              </CardTitle>
+              <CardDescription>Master your academic control center</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                Complete guide to navigating the ERP system for course registration, grades, and more.
+              </p>
+              <Button asChild className="w-full">
+                <Link to="/erp-guide">
+                  Learn ERP <ArrowRight className="h-4 w-4 ml-2" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="hover-scale border-2 border-green-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Calendar className="h-5 w-5 text-green-600" />
+                Timetable Registration
+              </CardTitle>
+              <CardDescription>Step-by-step registration process</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                Detailed walkthrough of creating your perfect timetable and avoiding common mistakes.
+              </p>
+              <Button asChild className="w-full">
+                <Link to="/timetable-registration">
+                  Registration Guide <ArrowRight className="h-4 w-4 ml-2" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
 
         <Card className="mb-8 bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">

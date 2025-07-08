@@ -1,15 +1,64 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Home, Wifi, Users, Video, ExternalLink, Phone } from "lucide-react";
+import { Home, Wifi, Users, Video, ExternalLink, Phone, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+
 const HostelLife = () => {
   const boysHostels = ["Vishwakarma Bhawan", "Krishna Bhawan", "Budh Bhawan", "Rana Pratap Bhawan", "SR Bhawan", "Gandhi Bhawan", "Ashok Bhawan", "Ram Bhawan", "Bhagirath Bhawan", "Shankar Bhawan", "Vyas Bhawan"];
   const girlsHostels = ["Meera Bhawan"];
-  return <section id="hostel" className="py-16 px-4 bg-white">
+
+  return (
+    <section id="hostel" className="py-16 px-4 bg-white">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">🛏️ Hostel Life and Tours</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">Welcome to your home for the next few years! Hostels at BITS Pilani are more than just places to stay they're where friendships start, midnight discussions happen, and lifelong memories are made.</p>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Welcome to your home for the next few years! Hostels at BITS Pilani are more than just places to stay - they're where friendships start, midnight discussions happen, and lifelong memories are made.
+          </p>
+        </div>
+
+        {/* Quick Links to Sub-pages */}
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
+          <Card className="hover-scale border-2 border-blue-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Home className="h-5 w-5 text-blue-600" />
+                Hostel Allocation Guide
+              </CardTitle>
+              <CardDescription>Learn how room allocation works and what to expect</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                Detailed information about hostel assignment, room sharing, and the allocation process.
+              </p>
+              <Button asChild className="w-full">
+                <Link to="/hostel-allocation">
+                  Learn More <ArrowRight className="h-4 w-4 ml-2" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="hover-scale border-2 border-green-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Wifi className="h-5 w-5 text-green-600" />
+                Hostel Facilities
+              </CardTitle>
+              <CardDescription>Complete overview of amenities and services</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                Comprehensive guide to room amenities, common facilities, and services available.
+              </p>
+              <Button asChild className="w-full">
+                <Link to="/hostel-facilities">
+                  Explore Facilities <ArrowRight className="h-4 w-4 ml-2" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -110,9 +159,11 @@ const HostelLife = () => {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                  {boysHostels.map(hostel => <div key={hostel} className="bg-blue-50 p-3 rounded-lg text-center">
+                  {boysHostels.map((hostel) => (
+                    <div key={hostel} className="bg-blue-50 p-3 rounded-lg text-center">
                       <p className="font-medium text-blue-800">{hostel}</p>
-                    </div>)}
+                    </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
@@ -126,9 +177,11 @@ const HostelLife = () => {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {girlsHostels.map(hostel => <div key={hostel} className="bg-pink-50 p-3 rounded-lg text-center">
+                  {girlsHostels.map((hostel) => (
+                    <div key={hostel} className="bg-pink-50 p-3 rounded-lg text-center">
                       <p className="font-medium text-pink-800">{hostel}</p>
-                    </div>)}
+                    </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
@@ -209,6 +262,8 @@ const HostelLife = () => {
           </CardContent>
         </Card>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default HostelLife;
