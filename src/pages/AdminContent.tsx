@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useContent, useUpdateContent } from "@/hooks/useContent";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -64,8 +63,8 @@ const AdminContent = () => {
     } catch (error) {
       if (error instanceof z.ZodError) {
         const errors: Record<string, string> = {};
-        error.errors.forEach((err) => {
-          errors[err.path.join('.')] = err.message;
+        error.issues.forEach((issue) => {
+          errors[issue.path.join('.')] = issue.message;
         });
         setValidationErrors(errors);
       }

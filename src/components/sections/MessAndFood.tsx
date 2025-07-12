@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Utensils, Coffee, ShoppingCart, Clock, ExternalLink, Store } from "lucide-react";
 import { useContentByKey } from "@/hooks/useContent";
-import { ContentRenderer } from "@/components/ContentRenderer";
+import ContentRenderer from "@/components/ContentRenderer";
 
 const MessAndFood = () => {
   // Fetch dynamic content
