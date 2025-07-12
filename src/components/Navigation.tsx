@@ -26,11 +26,20 @@ const Navigation = () => {
     return location.pathname === href;
   };
 
+  const handleNavClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setIsOpen(false);
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-lg shadow-lg z-50 border-b-2 border-gradient-to-r from-blue-200 to-purple-200">
       <div className="container mx-auto px-3 sm:px-4">
         <div className="flex items-center justify-between h-14 sm:h-16">
-          <Link to="/" className="flex items-center space-x-1 sm:space-x-2 min-w-0 flex-shrink-0 max-w-[40%] sm:max-w-none">
+          <Link 
+            to="/" 
+            className="flex items-center space-x-1 sm:space-x-2 min-w-0 flex-shrink-0 max-w-[40%] sm:max-w-none"
+            onClick={handleNavClick}
+          >
             <img
               src="/lovable-uploads/14d131b7-3c5f-4324-b92e-245de31eb64f.png"
               alt="Student Union Logo"
@@ -46,6 +55,7 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 to={item.href}
+                onClick={handleNavClick}
                 className={`flex items-center space-x-1 lg:space-x-2 px-2 lg:px-3 py-2 rounded-lg transition-all duration-300 text-xs lg:text-sm font-semibold shadow-sm whitespace-nowrap ${
                   isActive(item.href)
                     ? "text-white bg-gradient-to-r from-blue-500 to-purple-500"
@@ -79,7 +89,7 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 to={item.href}
-                onClick={() => setIsOpen(false)}
+                onClick={handleNavClick}
                 className={`flex items-center space-x-3 w-full text-left py-2.5 px-3 transition-all duration-300 rounded-lg mx-1 font-semibold text-sm ${
                   isActive(item.href)
                     ? "text-white bg-gradient-to-r from-blue-500 to-purple-500"
