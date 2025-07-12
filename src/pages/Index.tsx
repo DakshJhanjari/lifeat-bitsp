@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowDown, Users, BookOpen, Star, Award, Target, Heart, Sparkles, GraduationCap, Utensils } from "lucide-react";
@@ -225,7 +224,7 @@ const Index = () => {
         </div>
       </section>
       
-      <Footer />
+      <Footer showConnectSection={true} />
     </div>
   );
 };
