@@ -1,112 +1,106 @@
 
 import React from 'react';
-import DOMPurify from 'dompurify';
-import type { Tables } from '@/integrations/supabase/types';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import type { Tables } from "@/integrations/supabase/types";
 
-type ContentSection = Tables<'content_sections'>;
+type ContentSection = Tables<"content_sections">;
 
 interface ContentRendererProps {
-  section: ContentSection;
+  content: ContentSection;
   className?: string;
 }
 
-// Type guards for content data
-const isTextContent = (data: any): data is { text: string } => {
+interface TextContent {
+  text: string;
+}
+
+interface CardContent {
+  title: string;
+  content: string;
+}
+
+interface ListContent {
+  title: string;
+  items: string[];
+}
+
+interface HtmlContent {
+  html: string;
+}
+
+// Type guard functions
+const isTextContent = (data: any): data is TextContent => {
   return data && typeof data === 'object' && typeof data.text === 'string';
 };
 
-const isHtmlContent = (data: any): data is { html: string } => {
+const isCardContent = (data: any): data is CardContent => {
+  return data && typeof data === 'object' && 
+         typeof data.title === 'string' && 
+         typeof data.content === 'string';
+};
+
+const isListContent = (data: any): data is ListContent => {
+  return data && typeof data === 'object' && 
+         typeof data.title === 'string' && 
+         Array.isArray(data.items);
+};
+
+const isHtmlContent = (data: any): data is HtmlContent => {
   return data && typeof data === 'object' && typeof data.html === 'string';
 };
 
-const isListContent = (data: any): data is { title?: string; items: string[] } => {
-  return data && typeof data === 'object' && Array.isArray(data.items);
-};
+export const ContentRenderer: React.FC<ContentRendererProps> = ({ content, className = "" }) => {
+  const { content_type, content_data } = content;
 
-const isCardContent = (data: any): data is { title?: string; content?: string } => {
-  return data && typeof data === 'object' && (data.title || data.content);
-};
-
-const ContentRenderer: React.FC<ContentRendererProps> = ({ section, className = '' }) => {
-  const { content_type, content_data } = section;
-
-  const renderContent = () => {
-    switch (content_type) {
-      case 'text':
-        if (!isTextContent(content_data)) {
-          return <p className={`text-gray-500 italic ${className}`}>Invalid text content</p>;
-        }
+  switch (content_type) {
+    case 'text':
+      if (isTextContent(content_data)) {
         return (
-          <p className={`text-gray-700 ${className}`}>
-            {content_data.text || ''}
-          </p>
+          <span className={className}>
+            {content_data.text}
+          </span>
         );
+      }
+      return <div className={className}>Invalid text content</div>;
 
-      case 'html':
-        if (!isHtmlContent(content_data)) {
-          return <p className={`text-gray-500 italic ${className}`}>Invalid HTML content</p>;
-        }
-        // Sanitize HTML content to prevent XSS attacks
-        const sanitizedHTML = DOMPurify.sanitize(content_data.html || '', {
-          ALLOWED_TAGS: ['p', 'strong', 'em', 'u', 'br', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-          ALLOWED_ATTR: ['class'],
-        });
+    case 'card':
+      if (isCardContent(content_data)) {
         return (
-          <div 
-            className={className}
-            dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
-          />
+          <div className={`bg-orange-50 p-3 rounded-lg ${className}`}>
+            <h4 className="font-semibold text-orange-800">{content_data.title}</h4>
+            <p className="text-sm text-gray-600">{content_data.content}</p>
+          </div>
         );
+      }
+      return <div className={className}>Invalid card content</div>;
 
-      case 'list':
-        if (!isListContent(content_data)) {
-          return <p className={`text-gray-500 italic ${className}`}>Invalid list content</p>;
-        }
-        const items = content_data.items || [];
+    case 'list':
+      if (isListContent(content_data)) {
         return (
           <div className={className}>
-            {content_data.title && (
-              <h4 className="font-semibold text-gray-800 mb-2">
-                {content_data.title}
-              </h4>
-            )}
-            <ul className="list-disc list-inside space-y-1 text-gray-700">
-              {items.map((item: string, index: number) => (
+            <h4 className="font-medium mb-2">{content_data.title}</h4>
+            <ul className="text-sm text-gray-600 space-y-1">
+              {content_data.items?.map((item: string, index: number) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
           </div>
         );
+      }
+      return <div className={className}>Invalid list content</div>;
 
-      case 'card':
-        if (!isCardContent(content_data)) {
-          return <p className={`text-gray-500 italic ${className}`}>Invalid card content</p>;
-        }
+    case 'html':
+      if (isHtmlContent(content_data)) {
         return (
-          <div className={`bg-white rounded-lg border p-4 ${className}`}>
-            {content_data.title && (
-              <h4 className="font-semibold text-gray-800 mb-2">
-                {content_data.title}
-              </h4>
-            )}
-            {content_data.content && (
-              <p className="text-gray-700">
-                {content_data.content}
-              </p>
-            )}
-          </div>
+          <div 
+            className={className}
+            dangerouslySetInnerHTML={{ __html: content_data.html }} 
+          />
         );
+      }
+      return <div className={className}>Invalid HTML content</div>;
 
-      default:
-        return (
-          <div className={`text-gray-500 italic ${className}`}>
-            Unsupported content type: {content_type}
-          </div>
-        );
-    }
-  };
-
-  return renderContent();
+    default:
+      return <div className={className}>Unsupported content type: {content_type}</div>;
+  }
 };
-
-export default ContentRenderer;

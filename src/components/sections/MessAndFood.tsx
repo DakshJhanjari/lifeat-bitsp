@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Utensils, Coffee, ShoppingCart, Clock, ExternalLink, Store } from "lucide-react";
 import { useContentByKey } from "@/hooks/useContent";
-import ContentRenderer from "@/components/ContentRenderer";
+import { ContentRenderer } from "@/components/ContentRenderer";
 
 const MessAndFood = () => {
   // Fetch dynamic content
@@ -32,10 +32,10 @@ const MessAndFood = () => {
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            {heroTitle ? <ContentRenderer section={heroTitle} /> : "🍽️ Mess & Food"}
+            {heroTitle ? <ContentRenderer content={heroTitle} /> : "🍽️ Mess & Food"}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            {heroSubtitle ? <ContentRenderer section={heroSubtitle} /> : "From hearty meals to late-night snacks, discover all the delicious options on campus!"}
+            {heroSubtitle ? <ContentRenderer content={heroSubtitle} /> : "From hearty meals to late-night snacks, discover all the delicious options on campus!"}
           </p>
         </div>
 
@@ -44,13 +44,13 @@ const MessAndFood = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Utensils className="h-5 w-5 text-orange-600" />
-                {messSystemTitle ? <ContentRenderer section={messSystemTitle} /> : "Mess System"}
+                {messSystemTitle ? <ContentRenderer content={messSystemTitle} /> : "Mess System"}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {messAllocation && <ContentRenderer section={messAllocation} />}
-                {messFeatures && <ContentRenderer section={messFeatures} />}
+                {messAllocation && <ContentRenderer content={messAllocation} />}
+                {messFeatures && <ContentRenderer content={messFeatures} />}
                 <Button asChild variant="outline" size="sm" className="w-full">
                   <a href="https://www.ssms-pilani.in/" target="_blank" rel="noopener noreferrer">
                     📋 Mess Menus & Timings <ExternalLink className="h-3 w-3 ml-1" />
@@ -64,18 +64,18 @@ const MessAndFood = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Coffee className="h-5 w-5 text-purple-600" />
-                {rediTitle ? <ContentRenderer section={rediTitle} /> : "Redi Culture"}
+                {rediTitle ? <ContentRenderer content={rediTitle} /> : "Redi Culture"}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 {rediDescription && (
                   <p className="text-sm text-gray-600 mb-3">
-                    <ContentRenderer section={rediDescription} />
+                    <ContentRenderer content={rediDescription} />
                   </p>
                 )}
-                {rediTimings && <ContentRenderer section={rediTimings} />}
-                {rediMenu && <ContentRenderer section={rediMenu} />}
+                {rediTimings && <ContentRenderer content={rediTimings} />}
+                {rediMenu && <ContentRenderer content={rediMenu} />}
               </div>
             </CardContent>
           </Card>
@@ -84,13 +84,13 @@ const MessAndFood = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Store className="h-5 w-5 text-green-600" />
-                {coopTitle ? <ContentRenderer section={coopTitle} /> : "BITS Co-op Store"}
+                {coopTitle ? <ContentRenderer content={coopTitle} /> : "BITS Co-op Store"}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {coopDescription && <ContentRenderer section={coopDescription} />}
-                {coopItems && <ContentRenderer section={coopItems} />}
+                {coopDescription && <ContentRenderer content={coopDescription} />}
+                {coopItems && <ContentRenderer content={coopItems} />}
                 <p className="text-xs text-gray-500">💳 Pay via cash, UPI, or student ID card</p>
               </div>
             </CardContent>
@@ -101,14 +101,14 @@ const MessAndFood = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <ShoppingCart className="h-5 w-5 text-blue-600" />
-              {cnotTitle ? <ContentRenderer section={cnotTitle} /> : "C'not (Connaught Place) - The Heart of Student Life"}
+              {cnotTitle ? <ContentRenderer content={cnotTitle} /> : "C'not (Connaught Place) - The Heart of Student Life"}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <p className="text-gray-600 mb-4">
-                  {cnotDescription ? <ContentRenderer section={cnotDescription} /> : "Affectionately called C'not, this is the central commercial hub inside BITS Pilani's campus — think of it as the student marketplace meets food court meets hangout zone."}
+                  {cnotDescription ? <ContentRenderer content={cnotDescription} /> : "Affectionately called C'not, this is the central commercial hub inside BITS Pilani's campus — think of it as the student marketplace meets food court meets hangout zone."}
                 </p>
                 <div className="bg-blue-50 p-4 rounded-lg">
                   <h4 className="font-semibold text-blue-800 mb-2">🛍️ What You'll Find:</h4>
@@ -136,13 +136,13 @@ const MessAndFood = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Clock className="h-5 w-5 text-indigo-600" />
-              {eateriesTitle ? <ContentRenderer section={eateriesTitle} /> : "Campus Eateries - ANC, Looters, TOTT, and DCC"}
+              {eateriesTitle ? <ContentRenderer content={eateriesTitle} /> : "Campus Eateries - ANC, Looters, TOTT, and DCC"}
             </CardTitle>
           </CardHeader>
           <CardContent>
             {eateriesHours && (
               <div className="mb-4 p-4 bg-indigo-50 rounded-lg">
-                <ContentRenderer section={eateriesHours} />
+                <ContentRenderer content={eateriesHours} />
               </div>
             )}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -194,19 +194,19 @@ const MessAndFood = () => {
         <Card className="mt-8 bg-gradient-to-r from-yellow-50 to-orange-50 border-yellow-200">
           <CardHeader>
             <CardTitle className="text-orange-800">
-              {laundryTitle ? <ContentRenderer section={laundryTitle} /> : "🧼 Laundry & Services"}
+              {laundryTitle ? <ContentRenderer content={laundryTitle} /> : "🧼 Laundry & Services"}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 gap-6">
               {laundryPaid && (
                 <div>
-                  <ContentRenderer section={laundryPaid} />
+                  <ContentRenderer content={laundryPaid} />
                 </div>
               )}
               {laundryDiy && (
                 <div>
-                  <ContentRenderer section={laundryDiy} />
+                  <ContentRenderer content={laundryDiy} />
                 </div>
               )}
             </div>

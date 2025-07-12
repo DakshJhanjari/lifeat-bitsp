@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Home, Building, Utensils, GraduationCap, Users, Heart, User } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import NotificationCenter from "@/components/NotificationCenter";
-import UserMenu from "@/components/UserMenu";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,7 +71,6 @@ const Navigation = () => {
 
           <div className="flex items-center space-x-2">
             <NotificationCenter />
-            <UserMenu />
             
             <Button
               variant="ghost"
