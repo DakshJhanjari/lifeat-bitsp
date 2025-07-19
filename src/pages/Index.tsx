@@ -9,13 +9,13 @@ import QuickNavSection from "@/components/sections/QuickNavSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-modern">
+    <div className="min-h-screen bg-gradient-subtle">
       <Navigation />
       
       <HeroSection />
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto space-y-16 sm:space-y-20">
+      <div className="container mx-auto px-3 sm:px-4">
+        <div className="max-w-5xl mx-auto">
           <CongratsCard />
           <OfficeStoryCard />
           <MentorConnectButton />
