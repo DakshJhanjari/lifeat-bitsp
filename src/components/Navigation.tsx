@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Home, Building, Utensils, GraduationCap, Users, Heart, User } from "lucide-react";
+import { Menu, X, Home, Building, Utensils, GraduationCap, Users, Heart } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import NotificationCenter from "@/components/NotificationCenter";
 
