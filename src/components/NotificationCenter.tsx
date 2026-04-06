@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bell, X, AlertCircle, Info, CheckCircle, Loader2 } from "lucide-react";
@@ -17,23 +17,29 @@ const NotificationCenter = () => {
   );
   const { toast } = useToast();
 
+  const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
+
   useEffect(() => {
     fetchNotifications();
     
-    // Set up real-time subscription
+    const channelName = `notifications-${Date.now()}`;
     const channel = supabase
-      .channel('notifications')
+      .channel(channelName)
       .on('postgres_changes', 
         { event: '*', schema: 'public', table: 'notifications' },
-        (payload) => {
-          console.log('Notification update:', payload);
+        () => {
           fetchNotifications();
         }
       )
       .subscribe();
 
+    channelRef.current = channel;
+
     return () => {
-      supabase.removeChannel(channel);
+      if (channelRef.current) {
+        supabase.removeChannel(channelRef.current);
+        channelRef.current = null;
+      }
     };
   }, []);
 
