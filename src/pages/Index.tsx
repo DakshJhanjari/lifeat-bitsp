@@ -2,26 +2,21 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/sections/HeroSection";
-import CongratsCard from "@/components/sections/CongratsCard";
+import BentoGrid from "@/components/sections/BentoGrid";
 import MentorConnectButton from "@/components/sections/MentorConnectButton";
-import QuickNavSection from "@/components/sections/QuickNavSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <div className="min-h-screen mesh-gradient-bg">
       <Navigation />
-      
       <HeroSection />
-      
-      <div className="container mx-auto px-3 sm:px-4">
-        <div className="max-w-5xl mx-auto">
-          <CongratsCard />
-          <MentorConnectButton />
-          <QuickNavSection />
-        </div>
+      <BentoGrid />
+      <div className="container mx-auto px-4 max-w-5xl">
+        <MentorConnectButton />
       </div>
-      
       <Footer showConnectSection={true} />
+      {/* Spacer for mobile bottom dock */}
+      <div className="h-20 md:h-0" />
     </div>
   );
 };
