@@ -1,6 +1,5 @@
 
 import Index from "./pages/Index";
-import DakshStory from "./pages/DakshStory";
 import HostelLifePage from "./pages/HostelLifePage";
 import MessAndFoodPage from "./pages/MessAndFoodPage";
 import AcademicOrientationPage from "./pages/AcademicOrientationPage";
@@ -67,9 +66,5 @@ export const navItems = [
   {
     to: "/health-and-fitness",
     page: <HealthAndFitnessPage />,
-  },
-  {
-    to: "/daksh-story",
-    page: <DakshStory />,
   },
 ];
