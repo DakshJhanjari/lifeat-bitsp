@@ -16,7 +16,7 @@ const Navigation = () => {
     { href: "/academic-orientation", label: "Academics", icon: GraduationCap },
     { href: "/clubs-and-campus-life", label: "Clubs & Life", icon: Users },
     { href: "/health-and-fitness", label: "Health & Fitness", icon: Heart },
-    { href: "/daksh-story", label: "From the Office", icon: User },
+    
   ];
 
   const isActive = (href: string) => {
