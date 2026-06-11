@@ -140,18 +140,18 @@ const NotificationAdmin = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
-      <Card>
+    <div className="max-w-4xl mx-auto p-6 space-y-6 text-foreground">
+      <Card className="bg-slate-900/40 border border-slate-800 backdrop-blur-sm text-foreground shadow-2xl">
         <CardHeader>
-          <CardTitle>Notification Management</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-white">Notification Management</CardTitle>
+          <CardDescription className="text-slate-400">
             Create and manage notifications for the BITS Pilani onboarding site
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Button 
             onClick={() => setIsCreating(true)}
-            className="mb-4"
+            className="mb-6 bg-blue-600 hover:bg-blue-500 text-white"
             disabled={isCreating}
           >
             <Plus className="h-4 w-4 mr-2" />
@@ -159,39 +159,41 @@ const NotificationAdmin = () => {
           </Button>
 
           {isCreating && (
-            <Card className="mb-6">
+            <Card className="mb-6 bg-slate-950/40 border border-slate-800 text-foreground">
               <CardHeader>
-                <CardTitle>{editingId ? 'Edit' : 'Create'} Notification</CardTitle>
+                <CardTitle className="text-white">{editingId ? 'Edit' : 'Create'} Notification</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <Label htmlFor="title">Title</Label>
+                    <Label htmlFor="title" className="text-slate-200">Title</Label>
                     <Input
                       id="title"
                       value={formData.title}
                       onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                       required
+                      className="bg-slate-900/60 border-slate-800 text-white"
                     />
                   </div>
 
                   <div>
-                    <Label htmlFor="message">Message</Label>
+                    <Label htmlFor="message" className="text-slate-200">Message</Label>
                     <Textarea
                       id="message"
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       required
+                      className="bg-slate-900/60 border-slate-800 text-white"
                     />
                   </div>
 
                   <div>
-                    <Label htmlFor="type">Type</Label>
+                    <Label htmlFor="type" className="text-slate-200">Type</Label>
                     <Select value={formData.type} onValueChange={(value: "info" | "warning" | "success") => setFormData({ ...formData, type: value })}>
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-slate-900/60 border-slate-800 text-white">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="bg-slate-950 border-slate-800 text-white">
                         <SelectItem value="info">Info</SelectItem>
                         <SelectItem value="warning">Warning</SelectItem>
                         <SelectItem value="success">Success</SelectItem>
@@ -200,12 +202,13 @@ const NotificationAdmin = () => {
                   </div>
 
                   <div>
-                    <Label htmlFor="expires_at">Expires At (Optional)</Label>
+                    <Label htmlFor="expires_at" className="text-slate-200">Expires At (Optional)</Label>
                     <Input
                       id="expires_at"
                       type="datetime-local"
                       value={formData.expires_at}
                       onChange={(e) => setFormData({ ...formData, expires_at: e.target.value })}
+                      className="bg-slate-900/60 border-slate-800 text-white"
                     />
                   </div>
 
@@ -215,14 +218,14 @@ const NotificationAdmin = () => {
                       checked={formData.is_active}
                       onCheckedChange={(checked) => setFormData({ ...formData, is_active: checked })}
                     />
-                    <Label htmlFor="is_active">Active</Label>
+                    <Label htmlFor="is_active" className="text-slate-200">Active</Label>
                   </div>
 
-                  <div className="flex space-x-2">
-                    <Button type="submit">
+                  <div className="flex space-x-2 pt-2">
+                    <Button type="submit" className="bg-blue-600 hover:bg-blue-500 text-white">
                       {editingId ? 'Update' : 'Create'} Notification
                     </Button>
-                    <Button type="button" variant="outline" onClick={resetForm}>
+                    <Button type="button" variant="outline" onClick={resetForm} className="border-slate-800 text-slate-300 hover:bg-slate-900/60 hover:text-white">
                       Cancel
                     </Button>
                   </div>
@@ -233,13 +236,13 @@ const NotificationAdmin = () => {
 
           <div className="space-y-4">
             {notifications.map((notification) => (
-              <Card key={notification.id}>
+              <Card key={notification.id} className="bg-slate-950/40 border border-slate-800 text-foreground">
                 <CardContent className="pt-6">
                   <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <h3 className="font-semibold">{notification.title}</h3>
-                      <p className="text-sm text-gray-600 mt-1">{notification.message}</p>
-                      <div className="flex items-center space-x-4 mt-2 text-xs text-gray-500">
+                    <div className="flex-1 text-left">
+                      <h3 className="font-semibold text-white">{notification.title}</h3>
+                      <p className="text-sm text-slate-300 mt-1">{notification.message}</p>
+                      <div className="flex items-center space-x-4 mt-2 text-xs text-slate-500">
                         <span>Type: {notification.type}</span>
                         <span>Status: {notification.is_active ? 'Active' : 'Inactive'}</span>
                         {notification.expires_at && (
@@ -252,6 +255,7 @@ const NotificationAdmin = () => {
                         variant="outline"
                         size="sm"
                         onClick={() => handleEdit(notification)}
+                        className="border-slate-800 text-slate-300 hover:bg-slate-900/60 hover:text-white"
                       >
                         <Edit className="h-4 w-4" />
                       </Button>
@@ -259,6 +263,7 @@ const NotificationAdmin = () => {
                         variant="destructive"
                         size="sm"
                         onClick={() => handleDelete(notification.id)}
+                        className="bg-red-950/40 border border-red-900/50 text-red-400 hover:bg-red-900 hover:text-white"
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>

@@ -128,26 +128,26 @@
 
 /* Glass card */
 .glass-card {
-  background: hsla(240, 12%, 13%, 0.6);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid hsla(0, 0%, 100%, 0.1);
+  background: hsla(240, 15%, 8%, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsla(240, 15%, 20%, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: hsla(240, 12%, 15%, 0.7);
-  border-color: hsla(262, 83%, 58%, 0.4);
-  box-shadow: 0 0 30px -5px hsla(262, 83%, 58%, 0.2);
-  transform: scale(1.02) translateY(-2px);
+  background: hsla(240, 15%, 10%, 0.6);
+  border-color: hsla(262, 83%, 58%, 0.3);
+  box-shadow: 0 0 40px -10px hsla(262, 83%, 58%, 0.15);
+  transform: translateY(-2px);
 }
 
 /* Glass nav */
 .glass-nav {
-  background: hsla(240, 15%, 5%, 0.7);
+  background: hsla(240, 15%, 5%, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid hsla(0, 0%, 100%, 0.06);
+  border-bottom: 1px solid hsla(240, 15%, 20%, 0.2);
 }
 
 /* Glow border on hover */
@@ -187,5 +187,13 @@
 
   .bounce-gentle {
     @apply animate-bounce-in;
+  }
+
+  .bg-gradient-subtle {
+    background: radial-gradient(circle at top, hsl(240 15% 10%) 0%, hsl(240 15% 5%) 100%);
+  }
+
+  .professional-card {
+    @apply glass-card bg-slate-900/40 border-slate-800/80 text-foreground backdrop-blur-md;
   }
 }

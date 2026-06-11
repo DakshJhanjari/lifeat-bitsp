@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navItems } from "./nav-items";
 import AdminContent from "./pages/AdminContent";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const AnimatedRoutes = () => {
             }
           />
         ))}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
   );

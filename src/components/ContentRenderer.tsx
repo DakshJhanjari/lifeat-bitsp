@@ -66,9 +66,9 @@ export const ContentRenderer: React.FC<ContentRendererProps> = ({ content, class
     case 'card':
       if (isCardContent(content_data)) {
         return (
-          <div className={`bg-orange-50 p-3 rounded-lg ${className}`}>
-            <h4 className="font-semibold text-orange-800">{content_data.title}</h4>
-            <p className="text-sm text-gray-600">{content_data.content}</p>
+          <div className={`bg-slate-950/30 border border-slate-800/50 p-4 rounded-xl shadow-lg ${className}`}>
+            <h4 className="font-semibold text-white mb-1">{content_data.title}</h4>
+            <p className="text-sm text-slate-300 leading-relaxed">{content_data.content}</p>
           </div>
         );
       }
@@ -78,10 +78,13 @@ export const ContentRenderer: React.FC<ContentRendererProps> = ({ content, class
       if (isListContent(content_data)) {
         return (
           <div className={className}>
-            <h4 className="font-medium mb-2">{content_data.title}</h4>
-            <ul className="text-sm text-gray-600 space-y-1">
+            <h4 className="font-semibold text-white mb-2">{content_data.title}</h4>
+            <ul className="text-sm text-slate-300 space-y-1.5">
               {content_data.items?.map((item: string, index: number) => (
-                <li key={index}>{item}</li>
+                <li key={index} className="flex items-start gap-2 text-left">
+                  <span className="text-primary mt-1 flex-shrink-0">•</span>
+                  <span>{item}</span>
+                </li>
               ))}
             </ul>
           </div>

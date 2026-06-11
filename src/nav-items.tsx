@@ -5,6 +5,7 @@ import MessAndFoodPage from "./pages/MessAndFoodPage";
 import AcademicOrientationPage from "./pages/AcademicOrientationPage";
 import ClubsAndCampusLifePage from "./pages/ClubsAndCampusLifePage";
 import HealthAndFitnessPage from "./pages/HealthAndFitnessPage";
+import DakshStory from "./pages/DakshStory";
 
 // Hostel sub-pages
 import HostelAllocationPage from "./pages/hostel/HostelAllocationPage";
@@ -66,5 +67,9 @@ export const navItems = [
   {
     to: "/health-and-fitness",
     page: <HealthAndFitnessPage />,
+  },
+  {
+    to: "/daksh-story",
+    page: <DakshStory />,
   },
 ];

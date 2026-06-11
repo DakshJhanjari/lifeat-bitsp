@@ -73,22 +73,22 @@ const NotificationCenter = () => {
   const getIcon = (type: string) => {
     switch (type) {
       case "warning":
-        return <AlertCircle className="h-5 w-5 text-orange-500" />;
+        return <AlertCircle className="h-5 w-5 text-orange-400" />;
       case "success":
-        return <CheckCircle className="h-5 w-5 text-green-500" />;
+        return <CheckCircle className="h-5 w-5 text-emerald-400" />;
       default:
-        return <Info className="h-5 w-5 text-blue-500" />;
+        return <Info className="h-5 w-5 text-blue-400" />;
     }
   };
 
   const getBgColor = (type: string) => {
     switch (type) {
       case "warning":
-        return "bg-gradient-to-r from-orange-50 to-yellow-50 border-orange-200";
+        return "bg-gradient-to-r from-orange-950/25 to-amber-950/10 border-orange-900/40 text-orange-200";
       case "success":
-        return "bg-gradient-to-r from-green-50 to-teal-50 border-green-200";
+        return "bg-gradient-to-r from-emerald-950/25 to-teal-950/10 border-emerald-900/40 text-emerald-200";
       default:
-        return "bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200";
+        return "bg-gradient-to-r from-blue-950/25 to-purple-950/10 border-blue-900/40 text-blue-200";
     }
   };
 
@@ -110,9 +110,7 @@ const NotificationCenter = () => {
     });
   };
 
-  // Function to render text with clickable links
   const renderMessageWithLinks = (message: string) => {
-    // Regular expression to find URLs
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     const parts = message.split(urlRegex);
     
@@ -124,7 +122,7 @@ const NotificationCenter = () => {
             href={part}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:text-blue-800 underline font-semibold"
+            className="text-blue-400 hover:text-blue-300 underline font-semibold"
           >
             {part}
           </a>
@@ -140,7 +138,7 @@ const NotificationCenter = () => {
         onClick={() => setIsOpen(!isOpen)}
         variant="ghost"
         size="sm"
-        className="relative h-8 w-8 p-0 hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100"
+        className="relative h-8 w-8 p-0 hover:bg-slate-800 text-slate-300 hover:text-white"
         disabled={loading}
       >
         {loading ? (
@@ -157,33 +155,33 @@ const NotificationCenter = () => {
 
       {isOpen && (
         <div className="absolute top-full right-0 mt-2 z-50">
-          <Card className="w-80 sm:w-96 max-w-[90vw] bg-white/95 backdrop-blur-sm shadow-2xl border-2 border-purple-200">
+          <Card className="w-80 sm:w-96 max-w-[90vw] bg-slate-950/95 border border-slate-800 text-foreground backdrop-blur-md shadow-2xl">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center justify-between">
-                <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="text-lg font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                   🔔 Notifications
                 </span>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsOpen(false)}
-                  className="h-6 w-6 p-0 hover:bg-red-100"
+                  className="h-6 w-6 p-0 hover:bg-red-950/40 hover:text-red-400"
                 >
                   <X className="h-3 w-3" />
                 </Button>
               </CardTitle>
-              <CardDescription className="text-sm font-medium text-slate-600">
+              <CardDescription className="text-sm font-medium text-slate-400">
                 Stay updated with important announcements! ✨
               </CardDescription>
             </CardHeader>
             <CardContent className="max-h-80 overflow-y-auto">
               {loading ? (
                 <div className="flex items-center justify-center py-6">
-                  <Loader2 className="h-6 w-6 animate-spin text-purple-500" />
-                  <span className="ml-2 text-sm font-semibold text-slate-600">Loading...</span>
+                  <Loader2 className="h-6 w-6 animate-spin text-purple-400" />
+                  <span className="ml-2 text-sm font-semibold text-slate-400">Loading...</span>
                 </div>
               ) : visibleNotifications.length === 0 ? (
-                <p className="text-center text-gray-500 py-4 text-sm font-medium">No notifications 📭</p>
+                <p className="text-center text-slate-500 py-4 text-sm font-medium">No notifications 📭</p>
               ) : (
                 <div className="space-y-3">
                   {visibleNotifications.map((notification) => (
@@ -193,24 +191,24 @@ const NotificationCenter = () => {
                     >
                       <div className="flex items-start gap-3">
                         {getIcon(notification.type)}
-                        <div className="flex-1 min-w-0">
+                        <div className="flex-1 min-w-0 text-left">
                           <div className="flex items-center justify-between gap-2">
-                            <h4 className="font-semibold text-gray-800 text-sm truncate">
+                            <h4 className="font-semibold text-white text-sm truncate">
                               {notification.title}
                             </h4>
                             <Button
                               variant="ghost"
                               size="sm"
                               onClick={() => dismissNotification(notification.id)}
-                              className="h-6 w-6 p-0 hover:bg-red-100 flex-shrink-0"
+                              className="h-6 w-6 p-0 hover:bg-red-950/40 hover:text-red-400 flex-shrink-0"
                             >
                               <X className="h-3 w-3" />
                             </Button>
                           </div>
-                          <p className="text-xs text-gray-700 mt-1 font-medium leading-relaxed">
+                          <p className="text-xs text-slate-300 mt-1 font-medium leading-relaxed">
                             {renderMessageWithLinks(notification.message)}
                           </p>
-                          <p className="text-xs text-gray-500 mt-2 font-semibold">{formatDate(notification.created_at)}</p>
+                          <p className="text-xs text-slate-500 mt-2 font-semibold">{formatDate(notification.created_at)}</p>
                         </div>
                       </div>
                     </div>
