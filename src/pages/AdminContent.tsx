@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useContent, useUpdateContent } from "@/hooks/useContent";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
 const AdminContent = () => {
+  const location = useLocation();
   const { data: contentSections, isLoading } = useContent();
   const updateContent = useUpdateContent();
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -116,7 +118,27 @@ const AdminContent = () => {
 
   return (
     <div className="container mx-auto p-8 min-h-screen text-foreground">
-      <h1 className="text-3xl font-bold mb-8 text-white">Content Management</h1>
+      <div className="flex justify-between items-center mb-8 border-b border-slate-800 pb-6 flex-wrap gap-4">
+        <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
+        <div className="flex gap-2">
+          <Link to="/admin/content">
+            <Button 
+              variant={location.pathname === "/admin/content" ? "default" : "outline"} 
+              className={location.pathname === "/admin/content" ? "bg-blue-600 hover:bg-blue-500 text-white" : "border-slate-800 text-slate-300 hover:bg-slate-900/60 hover:text-white"}
+            >
+              Manage Content
+            </Button>
+          </Link>
+          <Link to="/admin/notifications">
+            <Button 
+              variant={location.pathname === "/admin/notifications" ? "default" : "outline"} 
+              className={location.pathname === "/admin/notifications" ? "bg-blue-600 hover:bg-blue-500 text-white" : "border-slate-800 text-slate-300 hover:bg-slate-900/60 hover:text-white"}
+            >
+              Manage Notifications
+            </Button>
+          </Link>
+        </div>
+      </div>
       
       <div className="grid gap-6">
         {contentSections?.map((section) => (

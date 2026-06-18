@@ -5,7 +5,20 @@ import { Home, Wifi, Users, Video, ExternalLink, ArrowRight } from "lucide-react
 import { Link } from "react-router-dom";
 
 const HostelLife = () => {
-  const boysHostels = ["Vishwakarma Bhawan", "Krishna Bhawan", "Budh Bhawan", "Rana Pratap Bhawan", "Gandhi Bhawan", "Ashok Bhawan", "Ram Bhawan", "Bhagirath Bhawan", "Shankar Bhawan", "Vyas Bhawan"];
+  const boysHostels = [
+    "Vishwakarma Bhawan", 
+    "Krishna Bhawan", 
+    "Budh Bhawan", 
+    "Rana Pratap Bhawan", 
+    "Gandhi Bhawan", 
+    "Ashok Bhawan", 
+    "Ram Bhawan", 
+    "Bhagirath Bhawan", 
+    "Shankar Bhawan", 
+    "Vyas Bhawan",
+    "Malviya Bhawan",
+    "Srinivasa Ramanujan Bhawan (SR)"
+  ];
   const girlsHostels = ["Meera Bhawan"];
 
   return (

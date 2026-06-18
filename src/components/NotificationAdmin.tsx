@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,13 +8,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import { Trash2, Edit, Plus } from "lucide-react";
 import type { Database } from "@/integrations/supabase/types";
 
 type Notification = Database['public']['Tables']['notifications']['Row'];
 
 const NotificationAdmin = () => {
+  const location = useLocation();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [isCreating, setIsCreating] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -30,15 +31,15 @@ const NotificationAdmin = () => {
     fetchNotifications();
   }, []);
 
-  const fetchNotifications = async () => {
+  const fetchNotifications = () => {
     try {
-      const { data, error } = await supabase
-        .from('notifications')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
-      setNotifications(data || []);
+      const stored = localStorage.getItem("local_notifications");
+      let list: Notification[] = [];
+      if (stored) {
+        list = JSON.parse(stored);
+      }
+      list.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      setNotifications(list);
     } catch (error) {
       console.error('Error fetching notifications:', error);
       toast({
@@ -49,34 +50,48 @@ const NotificationAdmin = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     try {
+      const stored = localStorage.getItem("local_notifications");
+      let list: Notification[] = stored ? JSON.parse(stored) : [];
+      
       const payload = {
-        ...formData,
-        expires_at: formData.expires_at || null
+        title: formData.title,
+        message: formData.message,
+        type: formData.type,
+        expires_at: formData.expires_at || null,
+        is_active: formData.is_active
       };
-
-      let error;
       
       if (editingId) {
-        ({ error } = await supabase
-          .from('notifications')
-          .update(payload)
-          .eq('id', editingId));
+        list = list.map(item => {
+          if (item.id === editingId) {
+            return {
+              ...item,
+              ...payload
+            };
+          }
+          return item;
+        });
       } else {
-        ({ error } = await supabase
-          .from('notifications')
-          .insert([payload]));
+        const newNotif: Notification = {
+          id: `notif-${Date.now()}`,
+          created_at: new Date().toISOString(),
+          ...payload
+        };
+        list.push(newNotif);
       }
 
-      if (error) throw error;
-
+      localStorage.setItem("local_notifications", JSON.stringify(list));
+      
       toast({
         title: "Success",
         description: `Notification ${editingId ? 'updated' : 'created'} successfully`,
       });
+
+      window.dispatchEvent(new Event("local-notifications-updated"));
 
       resetForm();
       fetchNotifications();
@@ -90,19 +105,20 @@ const NotificationAdmin = () => {
     }
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = (id: string) => {
     try {
-      const { error } = await supabase
-        .from('notifications')
-        .delete()
-        .eq('id', id);
-
-      if (error) throw error;
+      const stored = localStorage.getItem("local_notifications");
+      let list: Notification[] = stored ? JSON.parse(stored) : [];
+      
+      list = list.filter(item => item.id !== id);
+      localStorage.setItem("local_notifications", JSON.stringify(list));
 
       toast({
         title: "Success",
         description: "Notification deleted successfully",
       });
+
+      window.dispatchEvent(new Event("local-notifications-updated"));
 
       fetchNotifications();
     } catch (error) {
@@ -140,7 +156,29 @@ const NotificationAdmin = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6 text-foreground">
+    <div className="container mx-auto p-8 min-h-screen text-foreground max-w-4xl space-y-6">
+      <div className="flex justify-between items-center mb-8 border-b border-slate-800 pb-6 flex-wrap gap-4">
+        <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
+        <div className="flex gap-2">
+          <Link to="/admin/content">
+            <Button 
+              variant={location.pathname === "/admin/content" ? "default" : "outline"} 
+              className={location.pathname === "/admin/content" ? "bg-blue-600 hover:bg-blue-500 text-white" : "border-slate-800 text-slate-300 hover:bg-slate-900/60 hover:text-white"}
+            >
+              Manage Content
+            </Button>
+          </Link>
+          <Link to="/admin/notifications">
+            <Button 
+              variant={location.pathname === "/admin/notifications" ? "default" : "outline"} 
+              className={location.pathname === "/admin/notifications" ? "bg-blue-600 hover:bg-blue-500 text-white" : "border-slate-800 text-slate-300 hover:bg-slate-900/60 hover:text-white"}
+            >
+              Manage Notifications
+            </Button>
+          </Link>
+        </div>
+      </div>
+
       <Card className="bg-slate-900/40 border border-slate-800 backdrop-blur-sm text-foreground shadow-2xl">
         <CardHeader>
           <CardTitle className="text-white">Notification Management</CardTitle>

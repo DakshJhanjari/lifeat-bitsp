@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bell, X, AlertCircle, Info, CheckCircle, Loader2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import type { Database } from "@/integrations/supabase/types";
 
@@ -17,54 +16,77 @@ const NotificationCenter = () => {
   );
   const { toast } = useToast();
 
-  const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
+  const DEFAULT_NOTIFICATIONS: Notification[] = [
+    {
+      id: "welcome-notif",
+      title: "Welcome to BITS Pilani! 🎉",
+      message: "We are excited to have you on campus. Check out the Hostel and Academic guides to get started! Visit https://insidebits.in for updates.",
+      type: "success",
+      is_active: true,
+      created_at: new Date().toISOString(),
+      expires_at: null
+    },
+    {
+      id: "erp-notif",
+      title: "ERP Registration Timings",
+      message: "Course registration on the ERP portal begins soon. Make sure to prepare your backup timetable combinations. Visit http://erp.bits-pilani.ac.in/ for details.",
+      type: "info",
+      is_active: true,
+      created_at: new Date().toISOString(),
+      expires_at: null
+    },
+    {
+      id: "docs-notif",
+      title: "Keep Documents Ready 📋",
+      message: "Please ensure you have all your original certificates and admission letter ready for physical verification on registration day.",
+      type: "warning",
+      is_active: true,
+      created_at: new Date().toISOString(),
+      expires_at: null
+    }
+  ];
 
   useEffect(() => {
     fetchNotifications();
     
-    const channelName = `notifications-${Date.now()}`;
-    const channel = supabase
-      .channel(channelName)
-      .on('postgres_changes', 
-        { event: '*', schema: 'public', table: 'notifications' },
-        () => {
-          fetchNotifications();
-        }
-      )
-      .subscribe();
-
-    channelRef.current = channel;
-
+    const handleUpdate = () => {
+      fetchNotifications();
+    };
+    
+    window.addEventListener("local-notifications-updated", handleUpdate);
     return () => {
-      if (channelRef.current) {
-        supabase.removeChannel(channelRef.current);
-        channelRef.current = null;
-      }
+      window.removeEventListener("local-notifications-updated", handleUpdate);
     };
   }, []);
 
-  const fetchNotifications = async () => {
+  const fetchNotifications = () => {
+    setLoading(true);
     try {
-      const { data, error } = await supabase
-        .from('notifications')
-        .select('*')
-        .eq('is_active', true)
-        .or(`expires_at.is.null,expires_at.gt.${new Date().toISOString()}`)
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('Error fetching notifications:', error);
-        toast({
-          title: "Error",
-          description: "Failed to load notifications",
-          variant: "destructive",
-        });
-        return;
+      const stored = localStorage.getItem("local_notifications");
+      let list: Notification[] = [];
+      if (!stored) {
+        list = DEFAULT_NOTIFICATIONS;
+        localStorage.setItem("local_notifications", JSON.stringify(DEFAULT_NOTIFICATIONS));
+      } else {
+        list = JSON.parse(stored);
       }
-
-      setNotifications(data || []);
+      
+      const now = new Date().getTime();
+      const filtered = list.filter(n => {
+        if (!n.is_active) return false;
+        if (n.expires_at) {
+          const exp = new Date(n.expires_at).getTime();
+          if (exp <= now) return false;
+        }
+        return true;
+      });
+      
+      // Sort by created_at descending
+      filtered.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      
+      setNotifications(filtered);
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error fetching notifications:', error);
     } finally {
       setLoading(false);
     }

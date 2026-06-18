@@ -61,6 +61,10 @@ const MessSystemPage = () => {
                       <h4 className="font-semibold text-amber-300">🌞 Lunch</h4>
                       <p className="text-sm text-slate-400">12:00 PM - 2:00 PM</p>
                     </div>
+                    <div className="bg-orange-950/20 border border-orange-900/30 p-3 rounded-lg">
+                      <h4 className="font-semibold text-orange-300">☕ Evening Tea & Snacks</h4>
+                      <p className="text-sm text-slate-400">5:00 PM - 6:00 PM</p>
+                    </div>
                     <div className="bg-purple-950/20 border border-purple-900/30 p-3 rounded-lg">
                       <h4 className="font-semibold text-purple-300">🌙 Dinner</h4>
                       <p className="text-sm text-slate-400">7:30 PM - 9:30 PM</p>

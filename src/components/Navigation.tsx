@@ -45,12 +45,12 @@ const Navigation = () => {
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            <Link to="/" onClick={handleNavClick} className="flex items-center gap-2">
-              <img
-                src="/lovable-uploads/14d131b7-3c5f-4324-b92e-245de31eb64f.png"
-                alt="Student Union Logo"
-                className={`object-contain transition-all duration-300 ${scrolled ? "h-7 w-7" : "h-9 w-9"}`}
-              />
+            <Link to="/" onClick={handleNavClick} className="flex items-center gap-2 group">
+              <div className={`flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white shadow-md transition-all duration-300 ${
+                scrolled ? "p-1.5 h-7 w-7" : "p-2 h-9 w-9"
+              } group-hover:scale-105 group-hover:rotate-3`}>
+                <GraduationCap className="h-full w-full" />
+              </div>
               <span className="font-jakarta font-bold text-base text-shimmer">
                 InsideBits
               </span>
@@ -83,12 +83,10 @@ const Navigation = () => {
       {/* Mobile Top Bar (minimal) */}
       <nav className="fixed top-0 left-0 right-0 z-50 md:hidden glass-nav py-2 px-4">
         <div className="flex items-center justify-between">
-          <Link to="/" onClick={handleNavClick} className="flex items-center gap-2">
-            <img
-              src="/lovable-uploads/14d131b7-3c5f-4324-b92e-245de31eb64f.png"
-              alt="Logo"
-              className="h-7 w-7 object-contain"
-            />
+          <Link to="/" onClick={handleNavClick} className="flex items-center gap-2 group">
+            <div className="flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white p-1.5 h-7 w-7 shadow-md transition-all group-hover:scale-105">
+              <GraduationCap className="h-full w-full" />
+            </div>
             <span className="font-jakarta font-bold text-sm text-shimmer">InsideBits</span>
           </Link>
           <div className="flex items-center gap-2">

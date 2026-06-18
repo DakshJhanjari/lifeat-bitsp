@@ -126,34 +126,35 @@ const buildDefaultSection = (key: string): ContentSection => {
   };
 };
 
+const getLocalSections = (): ContentSection[] => {
+  const stored = localStorage.getItem("local_content_sections");
+  if (!stored) return [];
+  try {
+    return JSON.parse(stored);
+  } catch {
+    return [];
+  }
+};
+
+const saveLocalSections = (sections: ContentSection[]) => {
+  localStorage.setItem("local_content_sections", JSON.stringify(sections));
+};
+
 export const useContent = () => {
   return useQuery({
     queryKey: ["content"],
     queryFn: async () => {
-      try {
-        const { data, error } = await supabase
-          .from("content_sections")
-          .select("*")
-          .eq("is_active", true)
-          .order("display_order");
-        
-        if (error) throw error;
-        
-        const dbData = data as ContentSection[];
-        const presentKeys = new Set(dbData.map(item => item.section_key));
-        
-        const merged = [...dbData];
-        Object.keys(DEFAULT_CONTENT).forEach(key => {
-          if (!presentKeys.has(key)) {
-            merged.push(buildDefaultSection(key));
-          }
-        });
-        
-        return merged;
-      } catch (err) {
-        console.warn("Error fetching content sections from database, using local fallbacks:", err);
-        return Object.keys(DEFAULT_CONTENT).map(key => buildDefaultSection(key));
-      }
+      const localData = getLocalSections();
+      const presentKeys = new Set(localData.map(item => item.section_key));
+      
+      const merged = [...localData];
+      Object.keys(DEFAULT_CONTENT).forEach(key => {
+        if (!presentKeys.has(key)) {
+          merged.push(buildDefaultSection(key));
+        }
+      });
+      
+      return merged;
     },
   });
 };
@@ -162,23 +163,12 @@ export const useContentByKey = (sectionKey: string) => {
   return useQuery({
     queryKey: ["content", sectionKey],
     queryFn: async () => {
-      try {
-        const { data, error } = await supabase
-          .from("content_sections")
-          .select("*")
-          .eq("section_key", sectionKey)
-          .eq("is_active", true)
-          .maybeSingle();
-        
-        if (error) throw error;
-        if (!data) {
-          return buildDefaultSection(sectionKey);
-        }
-        return data as ContentSection;
-      } catch (err) {
-        console.warn(`Error fetching key ${sectionKey} from database, using local fallback:`, err);
-        return buildDefaultSection(sectionKey);
+      const localData = getLocalSections();
+      const found = localData.find(item => item.section_key === sectionKey);
+      if (found) {
+        return found;
       }
+      return buildDefaultSection(sectionKey);
     },
   });
 };
@@ -196,36 +186,31 @@ export const useUpdateContent = () => {
   
   return useMutation({
     mutationFn: async ({ id, content_data, section_key, section_title, content_type }: UpdateArgs) => {
+      const localData = getLocalSections();
       const isDefault = id.startsWith('default-');
+      const realKey = isDefault ? section_key! : localData.find(item => item.id === id)?.section_key || section_key!;
       
-      if (isDefault) {
-        const { data, error } = await supabase
-          .from("content_sections")
-          .upsert({
-            section_key: section_key!,
-            section_title: section_title!,
-            content_type: content_type!,
-            content_data,
-            is_active: true,
-            updated_at: new Date().toISOString()
-          }, { onConflict: 'section_key' })
-          .select();
-        
-        if (error) throw error;
-        return data;
+      const updatedSection: ContentSection = {
+        id: isDefault ? `local-${realKey}` : id,
+        section_key: realKey,
+        section_title: section_title || DEFAULT_CONTENT[realKey]?.title || "Untitled",
+        content_type: content_type || DEFAULT_CONTENT[realKey]?.type || "text",
+        content_data,
+        display_order: 0,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      };
+
+      const existingIndex = localData.findIndex(item => item.section_key === realKey);
+      if (existingIndex > -1) {
+        localData[existingIndex] = updatedSection;
       } else {
-        const { data, error } = await supabase
-          .from("content_sections")
-          .update({ 
-            content_data,
-            updated_at: new Date().toISOString()
-          })
-          .eq("id", id)
-          .select();
-        
-        if (error) throw error;
-        return data;
+        localData.push(updatedSection);
       }
+      
+      saveLocalSections(localData);
+      return [updatedSection];
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["content"] });

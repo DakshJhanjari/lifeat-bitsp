@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Wifi, Droplets, Zap, Users } from "lucide-react";
+import { Wifi, Droplets, Zap, Users, ShoppingBag } from "lucide-react";
 
 const HostelFacilitiesPage = () => {
   return (
@@ -97,6 +97,38 @@ const HostelFacilitiesPage = () => {
                     <li>• Medical first aid</li>
                     <li>• Security systems</li>
                     <li>• Maintenance support</li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="hover-scale mb-8 bg-gradient-to-r from-blue-950/20 to-indigo-950/20 border border-blue-900/40 text-foreground backdrop-blur-sm shadow-xl">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-white">
+                <ShoppingBag className="h-5 w-5 text-indigo-400" />
+                🧳 Packing Guide & Things to Bring
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6 text-slate-300">
+                <div className="bg-slate-900/50 border border-slate-800 p-4 rounded-xl">
+                  <h4 className="font-semibold text-indigo-300 mb-3">🔌 Electronics & Utilities:</h4>
+                  <ul className="text-sm text-slate-400 space-y-2">
+                    <li>• <strong>Extension Board / Power Strip:</strong> Highly critical as rooms only have 2 sockets!</li>
+                    <li>• Laptop, chargers, and academic accessories</li>
+                    <li>• LAN Cable (Ethernet ports are available in rooms)</li>
+                    <li>• LED table lamp for late-night study sessions</li>
+                  </ul>
+                </div>
+                <div className="bg-slate-900/50 border border-slate-800 p-4 rounded-xl">
+                  <h4 className="font-semibold text-indigo-300 mb-3">🛏️ Bedding & Everyday Essentials:</h4>
+                  <ul className="text-sm text-slate-400 space-y-2">
+                    <li>• Mattress, bedsheets, pillows (can also buy at Co-op / C'not)</li>
+                    <li>• Bucket, mug, and toiletries (available on campus)</li>
+                    <li>• Laundry bag, hangers, and clothes clips</li>
+                    <li>• Warm clothes (Pilani winters get quite cold!)</li>
+                    <li>• Umbrella or raincoat (for monsoon season)</li>
                   </ul>
                 </div>
               </div>
